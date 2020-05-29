@@ -130,7 +130,7 @@ CACHES = {
 # App
 
 APP_HOST = os.environ.get("APP_HOST") or "http://127.0.0.1:8000"
-APP_NAME = "Вастрик.Клуб"
+APP_NAME = "Phangan Club"
 APP_DESCRIPTION = "Всё интересное происходит за закрытыми дверями"
 LAUNCH_DATE = datetime(2020, 4, 13)
 
@@ -157,7 +157,7 @@ JWT_EXP_TIMEDELTA = timedelta(days=120)
 
 MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.vas3k.club"
 MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-MAILGUN_EMAIL_FROM = "Вастрик.Клуб <club@vas3k.club>"
+MAILGUN_EMAIL_FROM = "Phangan Club <club@vas3k.club>"
 
 MEDIA_UPLOAD_URL = "https://i.vas3k.club/upload/"
 MEDIA_UPLOAD_CODE = os.getenv("MEDIA_UPLOAD_CODE")
