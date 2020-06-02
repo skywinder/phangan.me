@@ -49,6 +49,7 @@ class Topic(models.Model):
 
 class Post(models.Model, ModelDiffMixin):
     TYPE_POST = "post"
+    TYPE_SERVICE = "service"
     TYPE_INTRO = "intro"
     TYPE_LINK = "link"
     TYPE_QUESTION = "question"
@@ -60,6 +61,7 @@ class Post(models.Model, ModelDiffMixin):
     TYPE_WEEKLY_DIGEST = "weekly_digest"
     TYPES = [
         (TYPE_POST, "Текст"),
+        (TYPE_SERVICE, "Услуга"),
         (TYPE_INTRO, "#intro"),
         (TYPE_LINK, "Ссылка"),
         (TYPE_QUESTION, "Вопрос"),
@@ -73,6 +75,7 @@ class Post(models.Model, ModelDiffMixin):
 
     TYPE_TO_EMOJI = {
         TYPE_POST: "📝",
+        TYPE_SERVICE: "👩🏿‍🔬",
         TYPE_INTRO: "🙋‍♀️",
         TYPE_LINK: "🔗",
         TYPE_QUESTION: "❓",
@@ -85,6 +88,7 @@ class Post(models.Model, ModelDiffMixin):
 
     TYPE_TO_PREFIX = {
         TYPE_POST: "",
+        TYPE_SERVICE: "Услуга:",
         TYPE_INTRO: "",
         TYPE_LINK: "➜",
         TYPE_PAIN: "Боль:",
