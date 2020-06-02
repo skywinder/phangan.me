@@ -30,7 +30,7 @@ class Command(BaseCommand):
             .exclude(is_email_unsubscribed=True)
 
         for user in subscribed_users:
-            if not options.get("production") and user.email != "me@vas3k.ru":
+            if not options.get("production") and user.email != "me@oxor.io":
                 self.stdout.write("Test mode. Use --production to send the digest to all users")
                 continue
 

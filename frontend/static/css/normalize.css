@@ -38,8 +38,9 @@ main {
  */
 
 h1 {
-  font-size: 2em;
+  font-size: 1.72em;
   margin: 0.67em 0;
+  text-align: center;
 }
 
 /* Grouping content

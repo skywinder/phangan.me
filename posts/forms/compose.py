@@ -308,6 +308,7 @@ class PostBattleForm(PostForm):
 
 POST_TYPE_MAP = {
     Post.TYPE_POST: PostTextForm,
+    Post.TYPE_SERVICE: PostTextForm,
     Post.TYPE_LINK: PostLinkForm,
     Post.TYPE_QUESTION: PostQuestionForm,
     Post.TYPE_IDEA: PostIdeaForm,

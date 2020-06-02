@@ -48,7 +48,7 @@ class Command(BaseCommand):
                 text=digest_html,
                 is_pinned_until=datetime.utcnow() + timedelta(days=1),
                 is_visible=True,
-                is_public=False,
+                is_public=True,
             )
         )
 
@@ -67,7 +67,7 @@ class Command(BaseCommand):
         for user in subscribed_users:
             self.stdout.write(f"Sending to {user.email}...")
 
-            if not options.get("production") and user.email != "me@vas3k.ru":
+            if not options.get("production") and user.email != "me@oxor.io":
                 self.stdout.write("Test mode. Use --production to send the digest to all users")
                 continue
 
