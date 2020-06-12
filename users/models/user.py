@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import F
 
 from users.models.geo import Geo
-from utils.models import ModelDiffMixin
+from common.models import ModelDiffMixin
 from utils.slug import generate_unique_slug
 from utils.strings import random_string
 
@@ -150,6 +150,10 @@ class User(models.Model, ModelDiffMixin):
     @property
     def is_club_member(self):
         return self.moderation_status == User.MODERATION_STATUS_APPROVED and not self.is_banned
+
+    @property
+    def is_paid_member(self):
+        return self.is_club_member and self.membership_expires_at >= datetime.utcnow()
 
     @classmethod
     def registered_members(cls):

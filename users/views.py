@@ -20,10 +20,10 @@ from users.forms.intro import UserIntroForm
 from users.forms.profile import UserEditForm, ExpertiseForm, NotificationsEditForm
 from users.models.user import User
 from users.models.expertise import UserExpertise
-from users.models.badges import UserAchievement
+from users.models.achievements import UserAchievement
 from users.models.tags import Tag, UserTag
 from users.models.geo import Geo
-from utils.models import top, group_by
+from common.models import top, group_by
 
 
 @auth_required
@@ -85,7 +85,7 @@ def profile(request, user_slug):
     active_tags = {t.tag_id for t in UserTag.objects.filter(user=user).all()}
     achievements = UserAchievement.objects.filter(user=user).select_related("achievement")
     expertises = UserExpertise.objects.filter(user=user).all()
-    comments = Comment.visible_objects().filter(author=user).order_by("-created_at")[:3]
+    comments = Comment.visible_objects().filter(author=user, post__is_visible=True).order_by("-created_at")[:3]
     posts = Post.objects_for_user(request.me)\
         .filter(author=user, is_visible=True)\
         .exclude(type__in=[Post.TYPE_INTRO, Post.TYPE_PROJECT])
@@ -220,7 +220,7 @@ def add_expertise(request):
                 },
             }
 
-    return {"status": "tipidor"}
+    return {"status": "ok"}
 
 
 @auth_required
@@ -235,7 +235,7 @@ def delete_expertise(request, expertise):
             },
         }
 
-    return {"status": "tipidor"}
+    return {"status": "ok"}
 
 
 @auth_required
