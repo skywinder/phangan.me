@@ -96,7 +96,7 @@ def upvote_post(request, post_slug):
 
     return {
         "post": {
-            "upvotes": post.upvotes + (1 if is_vote_created else 0)
+            "upvotes": post.upvotes + (1 if is_vote_created else -1)
         }
     }
 
