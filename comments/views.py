@@ -197,6 +197,6 @@ def upvote_comment(request, comment_id):
 
     return {
         "comment": {
-            "upvotes": comment.upvotes + (1 if is_created else 0)
+            "upvotes": comment.upvotes + (1 if is_created else -1)
         }
     }

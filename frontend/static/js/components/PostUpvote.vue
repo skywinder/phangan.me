@@ -56,7 +56,7 @@ export default {
         toggle() {
             return ClubApi.ajaxify(this.url, (data) => {
                 this.upvotes = parseInt(data.post.upvotes);
-                this.isVoted = true;
+                this.isVoted = !this.isVoted;
             });
         },
     },
