@@ -47,7 +47,38 @@ local_settings.py
 media/images
 media/i
 
-club/.env
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
 db.sqlite3
+
+# Python #
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec 
+
+club/.env
 *.session
 venv/
+stale_outputs_checked
+
