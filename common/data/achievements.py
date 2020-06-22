@@ -9,7 +9,7 @@ ACHIEVEMENTS = [
         "name": "Ёрли Инвестор",
         "description": "Человек, вложивший $1000 и более реальных денег в развитие Клуба",
         "image": "https://i.vas3k.club/3a1.png",
-        "style": "background-color: #FFDC00;",
+        "style": "background-color: #FFBE00;",
     }),
     ("contributor", {
         "name": "Контри-бьютор",
@@ -34,7 +34,7 @@ ACHIEVEMENTS = [
         "name": "Добытчик Золота",
         "description": "Нашел и запостил много офигенных ссылок, которые не раз попадали в топы недели",
         "image": "https://i.vas3k.club/3d2.png",
-        "style": "background-color: #F8D90F;",
+        "style": "background-color: #FABE0F;",
     }),
     ("helper", {
         "name": "Твой Бро",
@@ -51,7 +51,7 @@ ACHIEVEMENTS = [
     }),
     ("international", {
         "name": "Между-народные отношения",
-        "description": "Выдаётся за офлайн-встречу с ранее не знакомыми членами Клуба, проживающими в другой стране",
+        "description": "Выдаётся за офлайн-встречу с ранее не знакомыми членами Клуба в другой стране (не СНГ)",
         "image": "https://i.vas3k.club/3aq.png",
         "style": "background-color: #1976D2; font-size: 120%;",
     }),
@@ -63,7 +63,7 @@ ACHIEVEMENTS = [
     }),
     ("tractor", {
         "name": "Почётный Тракторист",
-        "description": "Завсегдатай трактор-тредов",
+        "description": "Завсегдатай трактор-тредов, знающий размер НДФЛ в 140 странах наизусть",
         "image": "https://i.vas3k.club/3c9.png",
         "style": "background-color: #CCABD8; font-size: 120%;",
     }),
@@ -82,7 +82,7 @@ ACHIEVEMENTS = [
     }),
     ("ideas", {
         "name": "Идейный Вдохновитель",
-        "description": "Запостил хороших постов в раздел «Идеи»",
+        "description": "Предложил и запостил так много идей, что хватит еще на три Долины",
         "image": "https://i.vas3k.club/3d1.png",
         "style": "background-color: #F04393; font-size: 100%;",
     }),
