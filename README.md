@@ -70,7 +70,10 @@ When ticket receives a label it is automatically added to our board in Trello to
 
 ### 😎 I want to write some code!
 
-Open our [Trello](https://trello.com/b/SAbS5JiI/) to see the most important tickets at top. Then go to [Issues](https://github.com/vas3k/vas3k.club/issues) and pick one you like. Don't forget to leave a comment inside that you're getting it. Our maintainers track them and update the board. 
+- Open our [Trello](https://trello.com/b/SAbS5JiI/) to see the most important tickets at  top.
+- Then go to [Issues](https://github.com/vas3k/vas3k.club/issues) and pick one you like.
+  - Don't forget to leave a comment inside that you're getting it. Our maintainers track them and update the Trelllo board.
+- For futher questions feel free ask us in [Telegram group](https://t.me/vas3k_club_dev).
 
 For small fixes just open a PR. For big changes open an issues first or (if it's already opened) leave a comment with brief explanation what and why you're going to change. Many tickets hang open not because they cannot be done, but because they cause many logical contradictions that you may not know. It's better to clarify them in comments before sending a PR.
 
@@ -81,8 +84,8 @@ Pay attention to issue labels placed on tickets by our maintainers.
 - **good first issue** — good tickets for first-timers. Usually these are simple and not critical things that allow you to quickly feel the code and start contributing to it.
 - **bug** — the first priority, obviously.
 - **improvement** — accepted improvements for an existing module. Like adding a sort parameter to the feed. If improvement requires UI, be sure to provide a sketch before you start.
-- **new feature** —  completely new features. Usually they're too hard for newbies, leave them for experienced contributors. 
- 
+- **new feature** —  completely new features. Usually they're too hard for newbies, leave them for experienced contributors.  
+
 ## 👍 Our top contributors
 
 I would like to press F and give some respects to our [best contributors](https://github.com/vas3k/vas3k.club/graphs/contributors), who spent their own time to make the club better.
