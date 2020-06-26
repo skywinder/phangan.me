@@ -10,8 +10,8 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - DEBUG=false
-      - APP_HOST=https://vas3k.club
-      - MEDIA_UPLOAD_URL=https://i.vas3k.club/upload/
+      - APP_HOST=157.245.202.49
+      - MEDIA_UPLOAD_URL=157.245.202.49/upload/
       - POSTGRES_DB=vas3k_club
       - POSTGRES_USER=vas3k
       - POSTGRES_PASSWORD=vas3k

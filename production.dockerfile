@@ -27,4 +27,4 @@ RUN python -c "import nltk; nltk.download('punkt')"
 
 # copy the code
 COPY . /app
-COPY ./vas3k_club.env /app/club/.env
+COPY ./club/.env /app/club/.env
