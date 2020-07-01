@@ -10,8 +10,8 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - DEBUG=false
-      - APP_HOST=157.245.202.49
-      - MEDIA_UPLOAD_URL=157.245.202.49/upload/
+      - APP_HOST=phangan.me
+      - MEDIA_UPLOAD_URL=i.phangan.me
       - POSTGRES_DB=vas3k_club
       - POSTGRES_USER=vas3k
       - POSTGRES_PASSWORD=vas3k
