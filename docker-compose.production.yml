@@ -15,7 +15,7 @@ services:
       - POSTGRES_DB=vas3k_club
       - POSTGRES_USER=vas3k
       - POSTGRES_PASSWORD=vas3k
-      - POSTGRES_HOST=postgres
+      - POSTGRES_HOST=club_postgres
       - REDIS_DB=0
       - REDIS_HOST=redis
     restart: always
@@ -26,7 +26,7 @@ services:
       - redis
       - queue
     ports:
-      - "8814:8814"
+      - "80:8814"
 
   queue:
     <<: *app
