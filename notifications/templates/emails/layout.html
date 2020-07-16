@@ -48,19 +48,10 @@
         }
 
         p {
-            font-size: 16px;
             font-weight: 400;
             line-height: 1.5em;
             margin-bottom: 24px;
         }
-
-            p.center {
-                text-align: center;
-            }
-
-            p.editorial {
-                font-size: 18px;
-            }
 
             footer p {
                 font-size: 16px;
@@ -68,6 +59,14 @@
                 line-height: 1.5em;
                 margin-top: 48px;
             }
+
+        .center {
+            text-align: center;
+        }
+
+        .editorial {
+            font-size: 20px !important;
+        }
 
         img {
             border-radius: 4px;
@@ -301,7 +300,7 @@
                 margin-right: 20px;
             }
 
-            p, .comment, .user, .post {
+            .comment, .user, .post {
                 font-size: 17px;
             }
 
@@ -344,14 +343,16 @@
             {% block body %}{% endblock %}
         </main>
 
-        <footer>
-            {% block footer %}{% endblock %}
-            {% block unsubscribe %}
-                <p style="text-align: right;">
-                    Если вам больше не хочется никогда получать никаких писем от Клуба,<br> нажмите <a href="{{ settings.APP_HOST }}/notifications/unsubscribe/%user_id%/%secret_code%/">отписаться вообще от всего</a>.
-                </p>
-            {% endblock %}
-        </footer>
+        {% if not is_footer_excluded %}
+            <footer>
+                {% block footer %}{% endblock %}
+                {% block unsubscribe %}
+                    <p style="text-align: right;">
+                        Если вам больше не хочется никогда получать никаких писем от Клуба,<br> нажмите <a href="{{ settings.APP_HOST }}/notifications/unsubscribe/%user_id%/%secret_code%/">отписаться вообще от всего</a>.
+                    </p>
+                {% endblock %}
+            </footer>
+        {% endif %}
 
     </div>
     <!--[if (gte mso 9)|(IE)]>

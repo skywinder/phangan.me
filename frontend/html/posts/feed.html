@@ -40,6 +40,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{% url "network" %}">
+                            🚨 Сеть
+                        </a>
+                    </li>
+                    <li>
                         <a href="{% url "feed_type" "question" %}" class="{% if post_type == "question" %}feed-sidebar-menu-selected{% endif %}">
                             🤔 Вопросы Клубу
                         </a>
@@ -52,6 +57,11 @@
                     <li>
                         <a href="{% url "feed_type" "idea" %}" class="{% if post_type == "idea" %}feed-sidebar-menu-selected{% endif %}">
                             💡 Идеи
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url "feed_type" "post" %}" class="{% if post_type == "post" %}feed-sidebar-menu-selected{% endif %}">
+                            ✏️ Лонгриды
                         </a>
                     </li>
                     <li>
@@ -112,6 +122,7 @@
                     <select class="feed-ordering-item" onchange="location.href += '../' + event.target.value">
                         <option value="top">вообще</option>
                         <option value="top_week" {% if ordering == "top_week" %}selected{% endif %}>за неделю</option>
+                        <option value="top_month" {% if ordering == "top_month" %}selected{% endif %}>за месяц</option>
                     </select>
                 {% endif %}
             </div>

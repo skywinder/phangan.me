@@ -19,7 +19,7 @@ We're bullshitless community!
 2. Clone the repo
 
 ```
-git clone git@github.com:vas3k/phangan.me.git
+git clone git@github.com:skywinder/phangan.me.git
 cd phangan.me
 ```
 

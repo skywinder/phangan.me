@@ -3,13 +3,13 @@ from django.urls import path, include, re_path
 from django.contrib.sitemaps.views import sitemap
 
 from auth.helpers import auth_switch
-from auth.views.auth import login, logout, debug_dev_login, debug_random_login
+from auth.views.auth import login, logout, debug_dev_login, debug_random_login, join
 from auth.views.patreon import patreon_login, patreon_oauth_callback
 from bot.views import webhook_telegram, link_telegram
 from comments.views import create_comment, edit_comment, delete_comment, show_comment, upvote_comment, pin_comment
 from landing.views import landing, docs, god_settings
 from notifications.views import weekly_digest, email_unsubscribe, email_confirm, daily_digest, email_digest_switch
-from payments.views import membership_expired
+from payments.views import membership_expired, adyen_callback
 from posts.models import Post
 from posts.rss import NewPostsRss
 from posts.views.admin import admin_post, announce_post
@@ -19,19 +19,21 @@ from posts.sitemaps import sitemaps
 from search.views import search
 from users.views import profile, edit_profile, on_review, banned, rejected, intro, toggle_tag, \
     add_expertise, admin_profile, delete_expertise, edit_notifications, edit_bot, people
-from misc.views import achievements
+from misc.views import achievements, network
 
 POST_TYPE_RE = r"(?P<post_type>(all|{}))".format("|".join(dict(Post.TYPES).keys()))
-ORDERING_RE = r"(?P<ordering>(activity|new|top|top_week))"
+ORDERING_RE = r"(?P<ordering>(activity|new|top|top_week|top_month))"
 
 urlpatterns = [
     path("", auth_switch(landing, feed), name="index"),
 
+    path("join/", join, name="join"),
     path("auth/login/", login, name="login"),
     path("auth/logout/", logout, name="logout"),
     path("auth/patreon/", patreon_login, name="patreon_login"),
     path("auth/patreon_callback/", patreon_oauth_callback, name="patreon_oauth_callback"),
     path("monies/membership_expired/", membership_expired, name="membership_expired"),
+    path("monies/adyen_callback/", adyen_callback, name="adyen_callback"),
 
     path("user/<slug:user_slug>/", profile, name="profile"),
     path("user/<slug:user_slug>/edit/", edit_profile, name="edit_profile"),
@@ -79,6 +81,8 @@ urlpatterns = [
     path("notifications/renderer/digest/daily/<slug:user_slug>/", daily_digest, name="render_daily_digest"),
 
     path("docs/<slug:doc_slug>/", docs, name="docs"),
+
+    path("network/", network, name="network"),
 
     path("godmode/", god_settings, name="god_settings"),
     path("godmode/dev_login/", debug_dev_login, name="debug_dev_login"),
