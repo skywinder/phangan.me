@@ -120,3 +120,11 @@ See [docs/test.md](docs/test.md)
 CI/CD has setuped via github-actions. Go further to the [.github](.github/) folder to see details.
 
 :point_up: We still need someone who will improve and optimize ci workflows
+
+
+
+
+
+TBD good ref:
+
+https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
