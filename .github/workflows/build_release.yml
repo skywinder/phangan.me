@@ -60,9 +60,9 @@ jobs:
         run: |
           REPOSITORY=$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')
           echo "::set-output name=IMAGE_NAME::${REPOSITORY#*/}"
-#          echo "::set-output name=DOCKERHUB_IMAGE_NAME::ghcr.io/${REPOSITORY}"
-# temp fix while ghcr allow orgs to access ghcr via github token
           echo "::set-output name=DOCKERHUB_IMAGE_NAME::ghcr.io/umag/uat.vas3k.club"
+#         echo "::set-output name=DOCKERHUB_IMAGE_NAME::ghcr.io/${REPOSITORY}"
+# temp fix while ghcr allow orgs to access ghcr via github token
 
 #     Build Docker image:
       - name: Build and tag image
