@@ -8,11 +8,18 @@ from notifications.email.users import send_unmoderated_email, send_banned_email,
 from notifications.telegram.users import notify_user_ping, notify_admin_user_ping
 from users.models.achievements import UserAchievement, Achievement
 from users.models.user import User
+from users.models.invites import Invite
 
 
 def do_user_admin_actions(request, user, data):
     if not request.me.is_moderator:
         raise AccessDenied()
+
+    # Invites
+    if data["new_invites"]:
+        Invite.objects.bulk_create([
+            Invite(owner=user) for i in range(data["new_invites"])
+        ])
 
     # Hats
     if data["remove_hat"]:

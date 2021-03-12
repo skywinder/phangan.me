@@ -58,6 +58,10 @@
                         <span class="profile-status-text">{{ user.membership_years_left | rupluralize:"год,года,лет" }}</span>
                     {% endif %}
                 </a>
+                <a href="{% url "user_invites" user.slug %}" class="profile-status">
+                    <span class="profile-status-number">📬 {{ invites | cool_number }}</span>
+                    <span class="profile-status-text">{{ invites | rupluralize:"инвайт,инвайта,инвайтов" }}</span>
+                </a>
                 <a href="{% url "edit_notifications" user.slug %}" class="profile-status">
                     <span class="profile-status-icon">💌</span>
                     <span class="profile-status-status">

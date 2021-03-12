@@ -11,6 +11,7 @@ from search.models import SearchIndex
 from users.forms.profile import ExpertiseForm
 from users.models.achievements import UserAchievement
 from users.models.expertise import UserExpertise
+from users.models.invites import Invite
 from users.models.tags import Tag, UserTag
 from users.models.user import User
 
@@ -36,6 +37,7 @@ def profile(request, user_slug):
     tags = Tag.objects.filter(is_visible=True).all()
 
     intro = Post.get_user_intro(user)
+    invites = Invite.objects.filter(owner=user, used_by__isnull=True).count()
     projects = Post.objects.filter(author=user, type=Post.TYPE_PROJECT, is_visible=True).all()
     active_tags = {t.tag_id for t in UserTag.objects.filter(user=user).all()}
     achievements = UserAchievement.objects.filter(user=user).select_related("achievement")
@@ -47,6 +49,7 @@ def profile(request, user_slug):
 
     return render(request, "users/profile.html", {
         "user": user,
+        "invites": invites,
         "intro": intro,
         "projects": projects,
         "tags": tags,
@@ -118,5 +121,3 @@ def delete_expertise(request, expertise):
         }
 
     return {"status": "ok"}
-
-

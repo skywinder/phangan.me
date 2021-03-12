@@ -8,6 +8,21 @@
 {% block content %}
     <div class="content">
 
+        <div class="profile-header">Выдать инвайты</div>
+        <div class="block">
+            <form action="." method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-row">
+                    {{ form.new_invites.label_tag }}
+                    {{ form.new_invites }}
+                    {% if form.new_invites.errors %}<span class="form-row-errors">{{ form.new_invites.errors }}</span>{% endif %}
+                </div>
+
+                <button type="submit" class="button">Выдать</button>
+            </form>
+        </div>
+
         <div class="profile-header">Дать шапку</div>
         <div class="block">
             <form action="." method="post" enctype="multipart/form-data">

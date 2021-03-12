@@ -34,6 +34,7 @@ from users.views.settings import profile_settings, edit_profile, edit_account, e
 from users.views.intro import intro
 from users.views.admin import admin_profile
 from users.views.people import people
+from users.views.invites import apply_invite, user_invites
 
 POST_TYPE_RE = r"(?P<post_type>(all|{}))".format("|".join(dict(Post.TYPES).keys()))
 ORDERING_RE = r"(?P<ordering>(activity|new|top|top_week|top_month))"
@@ -49,6 +50,8 @@ urlpatterns = [
     path("auth/email/", email_login, name="email_login"),
     path("auth/email/code/", email_login_code, name="email_login_code"),
     path("auth/external/", external_login, name="external_login"),
+
+    path("invite/", apply_invite, name="apply_invite"),
 
     path("monies/", pay, name="pay"),
     path("monies/done/", done, name="done"),
@@ -66,6 +69,7 @@ urlpatterns = [
     path("user/<slug:user_slug>/edit/monies/", edit_payments, name="edit_payments"),
     path("user/<slug:user_slug>/edit/data/", edit_data, name="edit_data"),
     path("user/<slug:user_slug>/edit/data/request/", request_data, name="request_user_data"),
+    path("user/<slug:user_slug>/invites/", user_invites, name="user_invites"),
     path("user/<slug:user_slug>/admin/", admin_profile, name="admin_profile"),
     path("user/<slug:user_slug>/delete/", request_delete_account, name="request_delete_account"),
     path("user/<slug:user_slug>/delete/confirm/", confirm_delete_account, name="confirm_delete_account"),

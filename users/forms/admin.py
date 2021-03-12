@@ -39,6 +39,13 @@ class UserAdminForm(forms.Form):
         required=False,
     )
 
+    new_invites = forms.IntegerField(
+        label="Выдать инвайты",
+        initial=0,
+        min_value=0,
+        max_value=5,
+    )
+
     is_banned = forms.BooleanField(
         label="Забанить",
         required=False

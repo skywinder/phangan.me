@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Инвайты — {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="content user-edit">
+        <div class="form-title">📬<br>Ваши инвайты</div>
+
+        <br><br>
+
+        {% if active_invites %}
+            <div class="block-description block-description-center">
+                Активные ({{ active_invites | length }})
+            </div>
+
+            <ol>
+            {% for invite in active_invites %}
+                <li>
+                    <a href="{{ invite.get_absolute_url }}">{{ invite.id }}</a> - {{ invite.membership_days }} дней
+                </li>
+            {% endfor %}
+            </ol>
+        {% endif %}
+
+        {% if used_invites %}
+            <div class="block-description block-description-center">
+                Использованные ({{ used_invites | length }})
+            </div>
+
+            <ol>
+            {% for invite in used_invites %}
+                <li>
+                    {{ invite.id }},
+                    {{ invite.used_by.full_name }}
+                    ({{ invite.used_by.created_at }})
+                </li>
+            {% endfor %}
+            </ol>
+        {% endif %}
+
+    </div>
+{% endblock %}
