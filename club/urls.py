@@ -7,12 +7,12 @@ from auth.views.auth import login, logout, debug_dev_login, debug_random_login, 
 from auth.views.email import email_login, email_login_code
 from auth.views.external import external_login
 from auth.views.patreon import patreon_login, patreon_oauth_callback
-from bot.views import webhook_telegram, link_telegram
 from comments.views import create_comment, edit_comment, delete_comment, show_comment, upvote_comment, \
     retract_comment_vote, pin_comment
 from landing.views import landing, docs, god_settings
-from misc.views import achievements, network, robots
-from notifications.views import weekly_digest, email_unsubscribe, email_confirm, daily_digest, email_digest_switch
+from misc.views import achievements, network, robots, generate_ical_invite, generate_google_invite
+from notifications.views import weekly_digest, email_unsubscribe, email_confirm, daily_digest, email_digest_switch, \
+    link_telegram
 from payments.views import membership_expired, pay, done, stripe_webhook, stop_subscription
 from posts.api import md_show_post, api_show_post
 from posts.models.post import Post
@@ -22,7 +22,7 @@ from posts.views.admin import admin_post, announce_post
 from posts.views.api import toggle_post_bookmark
 from posts.views.feed import feed
 from posts.views.posts import show_post, edit_post, upvote_post, retract_post_vote, compose, compose_type, \
-    toggle_post_subscription, delete_post
+    toggle_post_subscription, delete_post, unpublish_post, clear_post
 from bookmarks.views import bookmarks
 from search.views import search
 from users.api import api_profile
@@ -37,7 +37,7 @@ from users.views.people import people
 from users.views.invites import apply_invite, user_invites
 
 POST_TYPE_RE = r"(?P<post_type>(all|{}))".format("|".join(dict(Post.TYPES).keys()))
-ORDERING_RE = r"(?P<ordering>(activity|new|top|top_week|top_month))"
+ORDERING_RE = r"(?P<ordering>(activity|new|top|top_week|top_month|hot))"
 
 urlpatterns = [
     path("", auth_switch(landing, feed), name="index"),
@@ -86,6 +86,8 @@ urlpatterns = [
 
     path("create/", compose, name="compose"),
     path("create/<slug:post_type>/", compose_type, name="compose_type"),
+    path("post/<slug:post_slug>/unpublish/", unpublish_post, name="unpublish_post"),
+    path("post/<slug:post_slug>/clear/", clear_post, name="clear_post"),
     path("post/<slug:post_slug>/delete/", delete_post, name="delete_post"),
     path("post/<slug:post_slug>/edit/", edit_post, name="edit_post"),
     path("post/<slug:post_slug>/bookmark/", toggle_post_bookmark, name="toggle_post_bookmark"),
@@ -110,7 +112,6 @@ urlpatterns = [
     path("comment/<uuid:comment_id>/delete/", delete_comment, name="delete_comment"),
 
     path("telegram/link/", link_telegram, name="link_telegram"),
-    path("telegram/webhook/<str:token>/", webhook_telegram, name="webhook_telegram"),
 
     path("notifications/confirm/<str:secret>/", email_confirm, name="email_confirm"),
     path("notifications/confirm/<str:secret>/<str:legacy_code>/", email_confirm, name="email_confirm_legacy"),
@@ -124,9 +125,14 @@ urlpatterns = [
 
     path("network/", network, name="network"),
 
+    # admin features
     path("godmode/", god_settings, name="god_settings"),
     path("godmode/dev_login/", debug_dev_login, name="debug_dev_login"),
     path("godmode/random_login/", debug_random_login, name="debug_random_login"),
+
+    # misc
+    path("misc/calendar/ical", generate_ical_invite, name="generate_ical_invite"),
+    path("misc/calendar/google", generate_google_invite, name="generate_google_invite"),
 
     # feeds
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
@@ -144,7 +150,6 @@ urlpatterns = [
 
 if settings.DEBUG:
     import debug_toolbar
-
     urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
 
 # According to django doc: https://docs.djangoproject.com/en/3.1/topics/testing/overview/#other-test-conditions
@@ -152,5 +157,4 @@ if settings.DEBUG:
 # so we use separate special var instead of settings.DEBUG
 if settings.TESTS_RUN:
     from debug.api import api_me
-
     urlpatterns.append(path("debug/me", api_me, name="debug_api_me"))

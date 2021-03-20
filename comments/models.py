@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import F
 from simple_history.models import HistoricalRecords
 
-from club.exceptions import NotFound
+from club.exceptions import NotFound, BadRequest
 from common.request import parse_ip_address, parse_useragent
 from posts.models.post import Post
 from users.models.user import User
@@ -64,8 +64,8 @@ class Comment(models.Model):
         }
 
     def save(self, *args, **kwargs):
-        if self.reply_to:
-            self.reply_to = self.find_top_comment(self.reply_to)
+        if self.reply_to and self.reply_to.reply_to and self.reply_to.reply_to.reply_to_id:
+            raise BadRequest(message="3 уровня комментариев это максимум")
 
         self.updated_at = datetime.utcnow()
         return super().save(*args, **kwargs)
@@ -97,21 +97,31 @@ class Comment(models.Model):
 
     @property
     def is_editable(self):
-        return self.created_at >= datetime.utcnow() - settings.COMMENT_EDIT_TIMEDELTA
+        return self.created_at >= datetime.utcnow() - settings.COMMENT_EDITABLE_TIMEDELTA
 
-    @property
-    def is_deletable(self):
-        return self.created_at >= datetime.utcnow() - settings.COMMENT_DELETE_TIMEDELTA
+    def is_deletable_by(self, user):
+        if user == self.author:
+            return self.created_at >= datetime.utcnow() - settings.COMMENT_DELETABLE_TIMEDELTA
+
+        if user == self.post.author:
+            return self.created_at >= datetime.utcnow() - settings.COMMENT_DELETABLE_BY_POST_AUTHOR_TIMEDELTA
+
+        return user.is_moderator
 
     @classmethod
-    def visible_objects(cls):
-        return cls.objects\
+    def visible_objects(cls, show_deleted=False):
+        comments = cls.objects\
             .filter(is_visible=True)\
             .select_related("author", "reply_to")
 
+        if not show_deleted:
+            comments = comments.filter(deleted_by__isnull=True)
+
+        return comments
+
     @classmethod
     def objects_for_user(cls, user):
-        return cls.visible_objects().extra({
+        return cls.visible_objects(show_deleted=True).extra({
             "is_voted": "select 1 from comment_votes "
                         "where comment_votes.comment_id = comments.id "
                         f"and comment_votes.user_id = '{user.id}'",
@@ -175,7 +185,7 @@ class CommentVote(models.Model):
         return self.created_at >= datetime.utcnow() - settings.RETRACT_VOTE_TIMEDELTA
 
     @classmethod
-    def upvote(cls, request, user, comment):
+    def upvote(cls, user, comment, request=None):
         if not user.is_god and user.id == comment.author_id:
             return None, False
 
@@ -184,8 +194,8 @@ class CommentVote(models.Model):
             comment=comment,
             defaults=dict(
                 post=comment.post,
-                ipaddress=parse_ip_address(request),
-                useragent=parse_useragent(request),
+                ipaddress=parse_ip_address(request) if request else None,
+                useragent=parse_useragent(request) if request else None,
             )
         )
 

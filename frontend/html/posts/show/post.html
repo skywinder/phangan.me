@@ -4,20 +4,16 @@
 {% load text_filters %}
 
 {% block post %}
-<div class="content">
-    <div class="post post-type-post">
-        <div class="post-header">
+<section class="content">
+    <article class="post post-type-post">
+        <header class="post-header">
             <div class="post-info">
                 {% if post.topic %}
                     {% include "posts/widgets/topic.html" with topic=post.topic type="post" %}
                 {% endif %}
             </div>
             <div class="post-title">
-                {% if post.type == "intro" %}
-                    {{ post.prefix}}: {{ post.author.full_name | rutypography }}
-                {% else %}
-                    {{ post.title | rutypography }}
-                {% endif %}
+                {{ post.title | rutypography }}
             </div>
             <span class="post-is-public">
                 {% if post.is_public %}
@@ -35,9 +31,7 @@
                     </div>
                 {% elif not post.is_visible %}
                     <div class="post-label">
-                        <span class="label label-type-draft">
-                            <span class="label-title">Черновик</span>
-                        </span>
+                        {% include "posts/widgets/draft_label.html" %}
                     </div>
                 {% endif %}
 
@@ -56,23 +50,16 @@
                     {% if post.author == me or me.is_moderator %}
                         <a href="{% url "edit_post" post.slug %}"><i class="fas fa-edit"></i>&nbsp;Править&nbsp;&nbsp;&nbsp;</a>
                     {% endif %}
-                    {% if post.author == me and not post.deleted_at and not post.is_visible %}
-                        <a href="{% url "delete_post" post.slug %}" onclick="return confirm('Действительно удалить?')"><i class="fas fa-trash"></i>&nbsp;Удалить&nbsp;&nbsp;&nbsp;</a>
-                    {% endif %}
-                    {% if post.author == me and post.deleted_at and not post.is_visible %}
-                        <a href="{% url "delete_post" post.slug %}"><i class="fas fa-trash-restore"></i>&nbsp;Восстановить&nbsp;&nbsp;&nbsp;</a>
-                    {% endif %}
+                    {% include "posts/widgets/delete_restore.html" %}
                     {% if me.is_moderator %}
                         <a href="{% url "announce_post" post.slug %}"><i class="fas fa-bullhorn"></i></a>&nbsp;&nbsp;&nbsp;
                         <a href="{% url "admin_post" post.slug %}"><i class="fas fa-tools"></i></a>
                     {% endif %}
                 </div>
 
-                {% if post.type != "intro" %}
-                    <div class="post-author">
-                        {% include "users/widgets/tiny.html" with user=post.author %}
-                    </div>
-                {% endif %}
+                <div class="post-author">
+                    {% include "users/widgets/tiny.html" with user=post.author %}
+                </div>
 
                 {% if post.label %}
                     <div class="post-label">
@@ -86,8 +73,8 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
-        <div class="post-text">
+        </header>
+        <section class="post-text">
             <post-upvote :initial-upvotes="{{ post.upvotes }}"
                          :hours-to-retract-vote="{{settings.RETRACT_VOTE_IN_HOURS}}"
                          upvote-url="{% url "upvote_post" post.slug %}"
@@ -101,10 +88,13 @@
             <div class="text-body text-body-type-post e-content">
                 {% render_post post %}
             </div>
-        </div>
-        <div class="post-footer p-author">
+        </section>
+        <footer class="post-footer p-author">
             {% include "users/widgets/card.html" with user=post.author %}
-        </div>
-    </div>
-</div>
+        </footer>
+    </article>
+    {% if linked_posts %}
+        {% include "posts/widgets/linked_posts.html" %}
+    {% endif %}
+</section>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% load text_filters %}
-<div class="block profile-card h-card">
+<article class="block profile-card h-card">
     <div class="profile-card-photo u-photo">
-        <div class="avatar profile-user-avatar" style="background-image: url('{{ user.get_avatar }}');"></div>
+        <div class="avatar profile-user-avatar"><img src="{{ user.get_avatar }}" alt="Аватар {{ user.full_name }}" loading="lazy" /></div>
     </div>
     <div class="profile-card-info">
         <a href="{% url "profile" user.slug %}" class="profile-user-name u-url">
-            <span class="profile-user-fullname {% if user.is_banned %}user-name-is-banned{% endif %} p-name">{{ user.full_name }}</span>
+            <span class="profile-user-fullname {% if user.is_banned or user.deleted_at %}user-name-is-banned{% endif %} p-name">{{ user.full_name }}</span>
             <span class="profile-user-nickname p-nickname">@{{ user.slug }}</span>
         </a>
 
@@ -34,4 +34,4 @@
             </div>
         {% endif %}
     </div>
-</div>
+</article>

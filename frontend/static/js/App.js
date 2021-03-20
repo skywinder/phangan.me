@@ -23,10 +23,10 @@ const imageUploadOptions = {
         "image/jpg",
         "image/gif",
         "video/mp4",
-        "video/quicktime" // .mov (macOS' default record format)
+        "video/quicktime", // .mov (macOS' default record format)
     ],
     extraHeaders: {
-        "Accept": "application/json",
+        Accept: "application/json",
     },
     extraParams: {
         code: imageUploadCode,
@@ -36,10 +36,11 @@ const imageUploadOptions = {
 const defaultMarkdownEditorOptions = {
     autoDownloadFontAwesome: false,
     spellChecker: false,
+    nativeSpellcheck: true,
     forceSync: true,
     status: false,
-    inputStyle: "textarea",
-    tabSize: 4
+    inputStyle: "contenteditable",
+    tabSize: 4,
 };
 
 /**
@@ -58,18 +59,18 @@ function createMarkdownEditor(element, options) {
 
     // overriding default CodeMirror shortcuts
     editor.codemirror.addKeyMap({
-        'Home': 'goLineLeft', // move the cursor to the left side of the visual line it is on
-        'End': 'goLineRight', // move the cursor to the right side of the visual line it is on
+        Home: "goLineLeft", // move the cursor to the left side of the visual line it is on
+        End: "goLineRight", // move the cursor to the right side of the visual line it is on
     });
 
     // adding ability to fire events on the hidden element
     if (element.dataset.listen) {
-        const events = element.dataset.listen.split(' ')
-        events.forEach(event => {
+        const events = element.dataset.listen.split(" ");
+        events.forEach((event) => {
             try {
-                editor.codemirror.on(event, e => e.getTextArea().dispatchEvent(new Event(event)))
+                editor.codemirror.on(event, (e) => e.getTextArea().dispatchEvent(new Event(event)));
             } catch (e) {
-                console.warn('Invalid event provided', event)
+                console.warn("Invalid event provided", event);
             }
         });
     }
@@ -106,6 +107,7 @@ const App = {
     },
     initializeThemeSwitcher() {
         const themeSwitch = document.querySelector('.theme-switcher input[type="checkbox"]');
+        const mediaQueryList = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
 
         themeSwitch.addEventListener(
             "change",
@@ -121,11 +123,21 @@ const App = {
         );
 
         const theme = localStorage.getItem("theme");
-        if (theme !== null) {
-            themeSwitch.checked = theme === "dark";
-        } else if (window.matchMedia) {
-            themeSwitch.checked = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        }
+        themeSwitch.checked = theme ? theme === "dark" : mediaQueryList.matches;
+
+        const setFaviconHref = (e) => {
+            const svgFavicon = document.querySelector('link[type="image/svg+xml"]');
+            const isDark = e.matches;
+
+            if (!theme) {
+                themeSwitch.checked = isDark;
+            }
+
+            svgFavicon.href = isDark ? "/static/images/favicon/favicon-dark.svg" : "/static/images/favicon/favicon.svg";
+        };
+
+        setFaviconHref(mediaQueryList);
+        mediaQueryList.addListener(setFaviconHref);
     },
 
     initializeMarkdownEditor() {
@@ -190,7 +202,7 @@ const App = {
                             title: "Insert code",
                         },
                     ],
-                })
+                });
 
                 return [...editors, editor];
             },
@@ -200,7 +212,7 @@ const App = {
         const invisibleMarkdownEditors = [...document.querySelectorAll(".markdown-editor-invisible")].reduce(
             (editors, element) => {
                 const editor = createMarkdownEditor(element, {
-                    toolbar: false
+                    toolbar: false,
                 });
 
                 return [...editors, editor];

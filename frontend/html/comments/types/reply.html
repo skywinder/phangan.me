@@ -3,8 +3,8 @@
 {% load comments %}
 <div class="reply {% if comment.created_at > post_last_view_at %}comment-is-new{% endif %}" id="comment-{{ comment.id }}">
     <div class="reply-author">
-        <a href="{% url "profile" comment.author.slug %}">
-            <span class="avatar user-avatar" style="background-image: url('{{ comment.author.get_avatar }}');"></span>
+        <a class="avatar user-avatar" href="{% url "profile" comment.author.slug %}">
+            <img src="{{ comment.author.get_avatar }}" alt="Аватар {{ comment.author.full_name }}" loading="lazy" />
         </a>
     </div>
     <div class="reply-body">
@@ -26,7 +26,7 @@
         </comment-upvote>
     </div>
     <div class="reply-footer">
-        <span class="comment-reply-button" v-on:click="showReplyForm('{{ comment.reply_to_id }}', '{{ comment.author.slug }}', true)">
+        <span class="comment-reply-button" v-on:click="showReplyForm('{{ reply_to.id }}', '{{ comment.author.slug }}', true)">
             —&nbsp;&nbsp;{{ comment.author.slug }}&nbsp;&nbsp;<i class="fas fa-reply"></i>
         </span>
 
@@ -34,7 +34,7 @@
             {{ comment.created_at | cool_date }}
         </a>
 
-        {% if comment.author == me and comment.is_editable or me.is_moderator %}
+        {% if me == comment.author or me == comment.post.author or me.is_moderator %}
             <a href="{% url "edit_comment" comment.id %}" class="comment-edit-button reply-button-hidden"><i class="fas fa-edit"></i></a>
             {% if not comment.is_deleted %}
                 <a href="{% url "delete_comment" comment.id %}" class="comment-edit-button reply-button-hidden" onclick="return confirm('Удаляем?')"><i class="fas fa-trash"></i></a>

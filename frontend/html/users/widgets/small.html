@@ -1,12 +1,12 @@
-<div class="user user-small">
+<article class="user user-small">
     <span class="user-avatar">
-        <a href="{% url "profile" user.slug %}">
-            <span class="avatar" style="background-image: url('{{ user.get_avatar }}');"></span>
+        <a class="avatar" href="{% url "profile" user.slug %}">
+            <img src="{{ user.get_avatar }}" alt="Аватар {{ user.full_name }}" loading="lazy" />
         </a>
     </span>
     <span class="user-info">
         <a href="{% url "profile" user.slug %}">
-            <span class="user-name {% if user.is_banned %}user-name-is-banned{% endif %}">{{ user.full_name }}</span>{% if me %}<span class="user-position">, {{ user.position }}</span>{% endif %}
+            <span class="user-name {% if user.is_banned or user.deleted_at %}user-name-is-banned{% endif %}">{{ user.full_name }}</span>{% if me %}<span class="user-position">, {{ user.position }}</span>{% endif %}
             {% if user.hat %}{% include "users/widgets/hat.html" with hat=user.hat %}{% endif %}
         </a>
     </span>
@@ -15,4 +15,4 @@
             {{ created_at | date:"j E Y" }}
         </span>
     {% endif %}
-</div>
+</article>

@@ -4,8 +4,8 @@
 {% load text_filters %}
 
 {% block post %}
-<div class="content">
-    <div class="post block post-layout-block">
+<section class="content">
+    <article class="post block post-layout-block">
         <div class="post-upvote">
             <post-upvote :initial-upvotes="{{ post.upvotes }}"
                          :hours-to-retract-vote="{{settings.RETRACT_VOTE_IN_HOURS}}"
@@ -18,7 +18,7 @@
                          {% if not me|can_upvote:post or upvote_disabled %}is-disabled{% endif %}>
             </post-upvote>
         </div>
-        <div class="post-header">
+        <header class="post-header">
             <div class="post-title">
                 <span class="p-name">💡 Идея: {{ post.title | rutypography }}</span>
 
@@ -34,11 +34,15 @@
                     {% include "posts/widgets/label.html" with label=post.label %}
                 {% endif %}
 
-                {% if not post.is_visible %}
+                {% if post.deleted_at %}
                     <div class="post-label">
-                        <span class="label label-type-draft">
-                            <span class="label-title">Черновик</span>
+                        <span class="label label-type-deleted">
+                            <span class="label-title">Удалённый пост</span>
                         </span>
+                    </div>
+                {% elif not post.is_visible %}
+                    <div class="post-label">
+                        {% include "posts/widgets/draft_label.html" %}
                     </div>
                 {% endif %}
             </div>
@@ -60,19 +64,23 @@
                     {% if post.author == me or me.is_moderator %}
                         <a href="{% url "edit_post" post.slug %}"><i class="fas fa-edit"></i>&nbsp;Править&nbsp;&nbsp;&nbsp;</a>
                     {% endif %}
+                    {% include "posts/widgets/delete_restore.html" %}
                     {% if me.is_moderator %}
                         <a href="{% url "announce_post" post.slug %}"><i class="fas fa-bullhorn"></i></a>&nbsp;&nbsp;&nbsp;
                         <a href="{% url "admin_post" post.slug %}"><i class="fas fa-tools"></i></a>
                     {% endif %}
                 </div>
             </div>
-        </div>
-        <div class="text-body text-body-type-post e-content">
+        </header>
+        <section class="text-body text-body-type-post e-content">
             {% render_post post %}
-        </div>
-        <div class="post-footer p-author">
+        </section>
+        <footer class="post-footer p-author">
             {% include "users/widgets/small.html" with user=post.author created_at=post.created_at %}
-        </div>
-    </div>
-</div>
+        </footer>
+    </article>
+    {% if linked_posts %}
+        {% include "posts/widgets/linked_posts.html" %}
+    {% endif %}
+</section>
 {% endblock %}

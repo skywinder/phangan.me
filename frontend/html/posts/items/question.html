@@ -1,8 +1,8 @@
 {% load posts %}
 {% load text_filters %}
-<div class="block feed-post h-entry {% css_classes post %}">
+<article class="block feed-post h-entry {% css_classes post %}">
     <div class="feed-post-author">
-        <a href="{% url "profile" post.author.slug %}" class="avatar" style="background-image: url('{{ post.author.get_avatar }}');"></a>
+        <a href="{% url "profile" post.author.slug %}" class="avatar"><img src="{{ post.author.get_avatar }}" alt="Аватар {{ post.author.full_name }}" loading="lazy" /></a>
     </div>
 
     <div class="feed-post-votes">
@@ -52,8 +52,8 @@
             </a>
         {% endif %}
 
-        {% include "posts/items/bookmark_controls.html" %}
+        {% include "posts/widgets/bookmark_controls.html" %}
 
     </div>
     <a class="block-link u-url" href="{% url "show_post" post.type post.slug %}"></a>
-</div>
+</article>

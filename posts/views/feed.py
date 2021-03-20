@@ -13,6 +13,7 @@ POST_TYPE_ALL = "all"
 
 ORDERING_ACTIVITY = "activity"
 ORDERING_NEW = "new"
+ORDERING_HOT = "hot"
 ORDERING_TOP = "top"
 ORDERING_TOP_WEEK = "top_week"
 ORDERING_TOP_MONTH = "top_month"
@@ -61,6 +62,8 @@ def feed(request, post_type=POST_TYPE_ALL, topic_slug=None, ordering=ORDERING_AC
             posts = posts.order_by("-published_at", "-created_at")
         elif ordering == ORDERING_TOP:
             posts = posts.order_by("-upvotes")
+        elif ordering == ORDERING_HOT:
+            posts = posts.order_by("-hotness")
         elif ordering == ORDERING_TOP_WEEK:
             posts = posts.filter(
                 published_at__gte=datetime.utcnow() - timedelta(days=7)
@@ -84,4 +87,5 @@ def feed(request, post_type=POST_TYPE_ALL, topic_slug=None, ordering=ORDERING_AC
         "topic": topic,
         "posts": paginate(request, posts),
         "pinned_posts": pinned_posts,
+        "date_month_ago": datetime.utcnow() - timedelta(days=30),
     })

@@ -1,0 +1,20 @@
+🏆 <b>Лучшие посты последних дней</b>
+{% for post in top_posts %}
+{{ forloop.counter }}: <a href="{{ settings.APP_HOST }}{% url "show_post" post.type post.slug %}">{% if post.emoji %}{{ post.emoji }} {% endif %}{% if post.prefix %}{{ post.prefix }} {% endif %}{{ post.title }}</a> (+{{ post.upvotes }})
+{% endfor %}
+
+🔥 <b>Обсуждаемые темы</b>
+{% for post in hot_posts %}
+{{ forloop.counter }}: <a href="{{ settings.APP_HOST }}{% url "show_post" post.type post.slug %}">{% if post.emoji %}{{ post.emoji }} {% endif %}{% if post.prefix %}{{ post.prefix }} {% endif %}{{ post.title }}</a> ({{ post.comment_count }} комментариев)
+{% endfor %}
+
+😎 <b>Лучшие интро</b>
+{% for intro in top_intros %}
+{{ forloop.counter }}: <a href="{{ settings.APP_HOST }}{% url "profile" intro.author.slug %}">{{ intro.author.full_name }}</a>, {{ intro.author.position }}{% if intro.author.company %} — {{ intro.author.company }}{% endif %} (+{{ intro.upvotes }})
+{% endfor %}
+
+🤣 <b>Лучший комментарий</b>
+
+{{ top_comment.author.full_name }} к посту <a href="{{ settings.APP_HOST }}{% url "show_post" top_comment.post.type top_comment.post.slug %}">{{ top_comment.post.title }}</a> (+{{ top_comment.upvotes }})
+{% load posts %}
+{% render_plain top_comment 300 %}

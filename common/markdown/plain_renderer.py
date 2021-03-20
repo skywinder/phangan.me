@@ -3,7 +3,10 @@ import mistune
 
 class PlainRenderer(mistune.HTMLRenderer):
     def link(self, link, text=None, title=None):
-        return "[" + (text or link) + "]"
+        if text:
+            return f'[{text}]({link})'
+        else:
+            return f'({link})'
 
     def image(self, src, alt="", title=None):
         return "🖼"
@@ -30,7 +33,7 @@ class PlainRenderer(mistune.HTMLRenderer):
         return "\n"
 
     def block_quote(self, text):
-        return text
+        return "> " + text
 
     def block_code(self, code, info=None):
         return code
@@ -39,7 +42,7 @@ class PlainRenderer(mistune.HTMLRenderer):
         return text
 
     def list_item(self, text, level):
-        return "- " + text
+        return "- " + text + "\n"
 
     def thematic_break(self):
         return '---\n'

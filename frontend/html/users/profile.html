@@ -6,23 +6,25 @@
 {% load paginator %}
 
 {% block title %}
-    {{ user.slug }} — {{ block.super }}
+    {{ user.full_name }} — {{ block.super }}
 {% endblock %}
 
 {% block og_tags %}
-    <meta property="og:title" content="{{ user.slug }} — {{ settings.APP_NAME }}">
+    <meta property="og:title" content="{{ user.full_name }} — {{ settings.APP_NAME }}">
     <meta property="og:site_name" content="{{ settings.APP_NAME }}">
     <meta property="og:url" content="{{ settings.APP_HOST }}">
     <meta property="og:type" content="website" />
     <meta property="og:description" content="{{ user.position }}{% if user.company %}, {{ user.company }}{% endif %}">
-    <meta property="og:image" content="{% static "images/share.png" %}">
+    <meta property="og:image" content="{{ user.get_avatar }}">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ user.slug }} — {{ settings.APP_NAME }}">
+    <meta name="twitter:title" content="{{ user.full_name }} — {{ settings.APP_NAME }}">
     <meta name="twitter:description" content="{{ user.position }}{% if user.company %}, {{ user.company }}{% endif %}">
-    <meta name="twitter:image" content="{% static "images/share.png" %}">
-{% endblock %}
+    <meta name="twitter:image" content="{{ user.get_avatar }}">
 
+    <!-- Exclude profiles from search engines -->
+    <meta name="robots" content="noindex">
+{% endblock %}
 
 {% block content %}
     <div class="content profile">
@@ -50,12 +52,15 @@
                     </span>
                 </div>
                 <a href="{% url "edit_payments" user.slug %}" class="profile-status">
-                    {% if user.membership_days_left < 400 %}
-                        <span class="profile-status-number">{% if user.membership_days_left < 10 %}💩{% else %}😎{% endif %} {{ user.membership_days_left | cool_number }}</span>
-                        <span class="profile-status-text">{{ user.membership_days_left | rupluralize:"день,дня,дней" }}</span>
+                    {% if user.membership_days_left < 150 %}
+                        <span class="profile-status-number">{% if user.membership_days_left < 10 %}😱{% else %}😋{% endif %} {{ user.membership_days_left | ceil | cool_number }}</span>
+                        <span class="profile-status-text">{{ user.membership_days_left | ceil | rupluralize:"день,дня,дней" }}</span>
+                    {% elif user.membership_days_left < 700 %}
+                        <span class="profile-status-number">😎 {{ user.membership_months_left | ceil | cool_number  }}</span>
+                        <span class="profile-status-text">{{ user.membership_months_left | ceil | rupluralize:"месяц,месяца,месяцев" }}</span>
                     {% else %}
-                        <span class="profile-status-number">💎 {{ user.membership_years_left | cool_number }}</span>
-                        <span class="profile-status-text">{{ user.membership_years_left | rupluralize:"год,года,лет" }}</span>
+                        <span class="profile-status-number">💎 {{ user.membership_years_left | ceil | cool_number }}</span>
+                        <span class="profile-status-text">{{ user.membership_years_left | ceil | rupluralize:"год,года,лет" }}</span>
                     {% endif %}
                 </a>
                 <a href="{% url "user_invites" user.slug %}" class="profile-status">
@@ -106,6 +111,11 @@
                 <div class="text-body profile-intro-text">
                     {% render_post intro %}
                 </div>
+                <div class="profile-intro-footer">
+                    <a href="{% url "show_post" intro.type intro.slug %}">
+                        {{ intro.comment_count }} {{ intro.comment_count | rupluralize:"комментарий,комментария,комментариев" }}
+                    </a>
+                </div>
             </div>
         {% endif %}
 
@@ -148,6 +158,17 @@
                             {% endfor %}
                         </div>
                     </div>
+                    {% if similarity %}
+                        {% if tag_group.list.0.group == "personal" %}
+                        <div class="profile-tags-footer">
+                            Вы похожи с этим членом клуба на {{ similarity.personal|floatformat }}%
+                        </div>
+                        {% elif tag_group.list.0.group == "hobbies" %}
+                        <div class="profile-tags-footer">
+                            Ваши увлечения совпадают на {{ similarity.hobbies|floatformat }}%
+                        </div>
+                        {% endif %}
+                    {% endif %}
                     {% if tag_group.list.0.group == "club" %}
                         <div class="profile-tags-footer">
                             {% if user.contact %}
@@ -198,26 +219,19 @@
             </div>
         {% endif %}
 
-        {% if projects or me.id == user.id %}
+        {% if projects %}
             <div class="profile-header">Проекты</div>
-            {% if projects %}
-                <div class="user-projects">
-                    {% for project in projects %}
-                        <a href="{% url "show_post" project.type project.slug %}" class="block user-project">
-                            {% if project.image %}
-                                <img src="{{ project.image }}" alt="{{ project.title }}">
-                            {% endif %}
-                            <span class="user-project-title">{{ project.title }}</span>
-                        </a>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <div class="block">
-                    <div class="profile-add-button">
-                        <a href="{% url "compose_type" "project" %}" class="button">Над чем работаешь?</a>
-                    </div>
-                </div>
-            {% endif %}
+
+            <div class="user-projects">
+                {% for project in projects %}
+                    <a href="{% url "show_post" project.type project.slug %}" class="block user-project">
+                        {% if project.image %}
+                            <img src="{{ project.image }}" alt="{{ project.title }}">
+                        {% endif %}
+                        <span class="user-project-title">{{ project.title }}</span>
+                    </a>
+                {% endfor %}
+            </div>
         {% endif %}
 
         {% if comments %}

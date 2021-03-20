@@ -3,7 +3,8 @@ from django.conf import settings
 from django.template import TemplateDoesNotExist
 from django.urls import reverse
 
-from bot.common import Chat, ADMIN_CHAT, send_telegram_message, render_html_message, RejectReason
+from notifications.telegram.common import Chat, ADMIN_CHAT, send_telegram_message, render_html_message
+from bot.handlers.common import RejectReason
 from users.models.user import User
 
 
@@ -74,6 +75,14 @@ def notify_admin_user_ping(user, message):
         send_telegram_message(
             chat=ADMIN_CHAT,
             text=f"🛎 <b>Юзера {user.slug} пинганули:</b> {message}"
+        )
+
+
+def notify_admin_user_unmoderate(user):
+    if user.telegram_id:
+        send_telegram_message(
+            chat=ADMIN_CHAT,
+            text=f"💣 <b>Юзера {user.slug} размодерировали</b>"
         )
 
 

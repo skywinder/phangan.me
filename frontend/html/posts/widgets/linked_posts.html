@@ -1,0 +1,8 @@
+<div class="block linked-posts">
+    <div class="linked-posts-title">Связанные посты</div>
+    <div class="linked-posts-scroll">
+        {% for post in linked_posts %}
+            {% include "posts/items/items.html" %}
+        {% endfor %}
+    </div>
+</div>

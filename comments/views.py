@@ -1,5 +1,7 @@
 import logging
+from datetime import datetime
 
+from django.conf import settings
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -9,6 +11,7 @@ from club.exceptions import AccessDenied, RateLimitException
 from comments.forms import CommentForm, ReplyForm, BattleCommentForm
 from comments.models import Comment, CommentVote
 from common.request import parse_ip_address, parse_useragent, ajax_request
+from posts.models.linked import LinkedPost
 from posts.models.post import Post
 from posts.models.views import PostView
 from search.models import SearchIndex
@@ -28,6 +31,8 @@ def create_comment(request, post_slug):
         ProperCommentForm = BattleCommentForm
     else:
         ProperCommentForm = CommentForm
+
+    comment_order = request.POST.get("post_comment_order", "created_at")
 
     if request.method == "POST":
         form = ProperCommentForm(request.POST)
@@ -59,8 +64,13 @@ def create_comment(request, post_slug):
                 post=post,
             )
             SearchIndex.update_comment_index(comment)
+            LinkedPost.create_links_from_text(post, comment.text)
 
-            return redirect("show_comment", post.slug, comment.id)
+            # return redirect("show_comment", post.slug, comment.id)
+            return redirect(
+                reverse("show_post", kwargs={"post_type": post.type,
+                                             "post_slug": post.slug}) + f"?comment_order={comment_order}#comment-{comment.id}"
+            )
         else:
             log.error(f"Comment form error: {form.errors}")
             return render(request, "error.html", {
@@ -134,10 +144,11 @@ def delete_comment(request, comment_id):
                 message="Только автор комментария, поста или модератор может удалить комментарий"
             )
 
-        if not comment.is_deletable:
+        if not comment.is_deletable_by(request.me):
             raise AccessDenied(
                 title="Время вышло",
-                message="Комментарий можно удалить только в первые 3 дня после создания"
+                message="Комментарий можно удалять только в первые дни после создания. "
+                        "Потом только автор или модератор может это сделать."
             )
 
         if not comment.post.is_visible:
@@ -176,7 +187,13 @@ def pin_comment(request, comment_id):
             message="Только автор поста или модератор может пинить посты"
         )
 
-    comment.is_pinned = not comment.is_pinned  # toggle
+    if comment.reply_to:
+        raise AccessDenied(
+            title="Нельзя!",
+            message="Можно пинить только комменты первого уровня"
+        )
+
+    comment.is_pinned = not comment.is_pinned  # toggle pin/unpin
     comment.save()
 
     return redirect("show_comment", comment.post.slug, comment.id)
@@ -191,9 +208,9 @@ def upvote_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
     post_vote, is_created = CommentVote.upvote(
-        request=request,
         user=request.me,
         comment=comment,
+        request=request,
     )
 
     return {
@@ -202,6 +219,7 @@ def upvote_comment(request, comment_id):
         },
         "upvoted_timestamp": int(post_vote.created_at.timestamp() * 1000)
     }
+
 
 @auth_required
 @ajax_request

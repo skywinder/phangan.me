@@ -77,26 +77,6 @@
     max-width: var(--max-content-width);
 }
 
-.landing {
-}
-
-    .landing-block {
-        position: relative;
-        max-width: var(--normal-content-width);
-        margin: 0 auto;
-    }
-
-    .landing-block-title {
-        max-width: var(--max-content-width);
-    }
-
-        .landing-title {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-        }
-
 .search {
     display: grid;
     grid-template-columns: auto;
@@ -137,7 +117,7 @@
         grid-row-start: 1;
         grid-row-end: 3;
         justify-self: start;
-        align-items: start;
+        align-items: flex-start;
     }
 
     .feed-post-votes {
@@ -146,7 +126,7 @@
         grid-row-start: 1;
         grid-row-end: 3;
         justify-self: end;
-        align-items: start;
+        align-items: flex-start;
     }
 
     .feed-post-header {
@@ -172,7 +152,7 @@
     display: grid;
     grid-template-columns: 200px auto;
     column-gap: 20px;
-    align-items: start;
+    align-items: flex-start;
 }
 
     @media only screen and (max-width : 570px) {
@@ -220,7 +200,7 @@
     grid-template-columns: minmax(auto, 1fr) min-content;
     grid-template-rows: auto auto auto;
     justify-content: stretch;
-    align-items: start;
+    align-items: flex-start;
 }
 
     .post-layout-block .post-upvote {
@@ -335,6 +315,15 @@
         .comment-form-body-battle-side {
             font-size: 150%;
         }
+
+        .comment-form-body-battle-side select {
+            width: 100%;
+        }
+
+            .comment-form-body-battle-side #id_battle_side {
+                width: auto;
+                max-width: 60%;
+            }
 
         .comment-form-body-title {
             padding: 20px 0;
@@ -612,7 +601,7 @@
     grid-template-columns: 320px minmax(auto, 1fr);
     grid-template-rows: 90px 100px 500px auto;
     justify-content: stretch;
-    align-items: start;
+    align-items: flex-start;
     column-gap: 20px;
     row-gap: 20px;
 }

@@ -23,6 +23,7 @@ class Post(models.Model, ModelDiffMixin):
     TYPE_PAIN = "pain"
     TYPE_IDEA = "idea"
     TYPE_PROJECT = "project"
+    TYPE_EVENT = "event"
     TYPE_REFERRAL = "referral"
     TYPE_BATTLE = "battle"
     TYPE_WEEKLY_DIGEST = "weekly_digest"
@@ -34,6 +35,7 @@ class Post(models.Model, ModelDiffMixin):
         (TYPE_PAIN, "Боль"),
         (TYPE_IDEA, "Идея"),
         (TYPE_PROJECT, "Проект"),
+        (TYPE_EVENT, "Событие"),
         (TYPE_REFERRAL, "Рефералка"),
         (TYPE_BATTLE, "Батл"),
         (TYPE_WEEKLY_DIGEST, "Журнал Клуба"),
@@ -47,6 +49,7 @@ class Post(models.Model, ModelDiffMixin):
         TYPE_PAIN: "😭",
         TYPE_IDEA: "💡",
         TYPE_PROJECT: "🏗",
+        TYPE_EVENT: "📅",
         TYPE_REFERRAL: "🏢",
         TYPE_BATTLE: "🤜🤛"
     }
@@ -59,6 +62,7 @@ class Post(models.Model, ModelDiffMixin):
         TYPE_IDEA: "Идея:",
         TYPE_QUESTION: "Вопрос:",
         TYPE_PROJECT: "Проект:",
+        TYPE_EVENT: "Событие:",
         TYPE_REFERRAL: "Рефералка:",
         TYPE_BATTLE: "Батл:"
     }
@@ -88,14 +92,15 @@ class Post(models.Model, ModelDiffMixin):
     comment_count = models.IntegerField(default=0)
     view_count = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0, db_index=True)
+    hotness = models.IntegerField(default=0, db_index=True)
 
-    is_visible = models.BooleanField(default=True)
-    is_visible_on_main_page = models.BooleanField(default=True)
-    is_commentable = models.BooleanField(default=True)
-    is_approved_by_moderator = models.BooleanField(default=False)
-    is_public = models.BooleanField(default=False)
-    is_pinned_until = models.DateTimeField(null=True)
-    is_shadow_banned = models.BooleanField(default=False)
+    is_visible = models.BooleanField(default=False)  # published or draft
+    is_visible_on_main_page = models.BooleanField(default=True)  # main page or room-only post
+    is_commentable = models.BooleanField(default=True)  # allow comments
+    is_approved_by_moderator = models.BooleanField(default=False)  # expose in newsletters, rss, etc
+    is_public = models.BooleanField(default=False)  # visible for the outside world
+    is_pinned_until = models.DateTimeField(null=True)  # pin on top of the main feed
+    is_shadow_banned = models.BooleanField(default=False)  # hide from main page
 
     history = HistoricalRecords(
         user_model=User,
@@ -105,9 +110,11 @@ class Post(models.Model, ModelDiffMixin):
             "created_at",
             "updated_at",
             "last_activity_at",
+            "published_at",
             "comment_count",
             "view_count",
             "upvotes",
+            "hotness",
         ],
     )
 
@@ -169,6 +176,10 @@ class Post(models.Model, ModelDiffMixin):
         return self.is_visible and not self.is_shadow_banned
 
     @property
+    def is_safely_deletable_by_author(self):
+        return self.comment_count < settings.MAX_COMMENTS_FOR_DELETE_VS_CLEAR
+
+    @property
     def description(self):
         return truncatechars(strip_tags(self.html or ""), 400)
 
@@ -176,10 +187,25 @@ class Post(models.Model, ModelDiffMixin):
     def effective_published_at(self):
         return self.published_at or self.created_at
 
+    @property
+    def event_datetime(self):
+        if self.metadata and self.metadata.get("event"):
+            hour, minute, second = map(int, self.metadata["event"]["time"].split(":", 2))
+            day = int(self.metadata["event"].get("day") or 0)
+            month = int(self.metadata["event"].get("month") or self.effective_published_at.month)
+            if month < self.effective_published_at.month:
+                year = self.effective_published_at.year + 1
+            else:
+                year = self.effective_published_at.year
+            return datetime(year, month, day, hour, minute, second)
+
     @classmethod
-    def check_duplicate(cls, user, title):
-        latest_user_post = Post.objects.filter(author=user).order_by("-created_at").first()
-        return latest_user_post and latest_user_post.title == title
+    def check_duplicate(cls, user, title, ignore_post_id=None):
+        last_post = Post.objects\
+            .filter(author=user) \
+            .order_by("-created_at")\
+            .first()
+        return last_post and last_post.id != ignore_post_id and last_post.title == title
 
     @classmethod
     def visible_objects(cls):
@@ -233,6 +259,22 @@ class Post(models.Model, ModelDiffMixin):
             intro.save()
 
         return intro
+
+    def clear(self):
+        self.text = settings.CLEARED_POST_TEXT
+        self.html = None
+        self.author = User.objects.filter(slug=settings.DELETED_USERNAME).first()
+        self.save()
+
+    def publish(self):
+        self.is_visible = True
+        self.published_at = datetime.utcnow()
+        self.save()
+
+    def unpublish(self):
+        self.is_visible = False
+        self.published_at = None
+        self.save()
 
     def delete(self, *args, **kwargs):
         self.deleted_at = datetime.utcnow()

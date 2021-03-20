@@ -41,11 +41,13 @@ class User(models.Model, ModelDiffMixin):
     MODERATION_STATUS_ON_REVIEW = "on_review"
     MODERATION_STATUS_REJECTED = "rejected"
     MODERATION_STATUS_APPROVED = "approved"
+    MODERATION_STATUS_DELETED = "deleted"
     MODERATION_STATUSES = [
         (MODERATION_STATUS_INTRO, MODERATION_STATUS_INTRO),
         (MODERATION_STATUS_ON_REVIEW, MODERATION_STATUS_ON_REVIEW),
         (MODERATION_STATUS_REJECTED, MODERATION_STATUS_REJECTED),
         (MODERATION_STATUS_APPROVED, MODERATION_STATUS_APPROVED),
+        (MODERATION_STATUS_DELETED, MODERATION_STATUS_DELETED),
     ]
 
     DEFAULT_AVATAR = "https://i.vas3k.club/v.png"
@@ -143,6 +145,9 @@ class User(models.Model, ModelDiffMixin):
 
     def membership_days_left(self):
         return (self.membership_expires_at - datetime.utcnow()).total_seconds() // 60 // 60 / 24
+
+    def membership_months_left(self):
+        return self.membership_days_left() / 30
 
     def membership_years_left(self):
         return self.membership_days_left() / 365
