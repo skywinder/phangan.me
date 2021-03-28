@@ -16,6 +16,6 @@ class Command(BaseCommand):
         # setWebhook for the bot
         if settings.TELEGRAM_TOKEN:
             webhook_uri = reverse("webhook_telegram", kwargs={"token": settings.TELEGRAM_TOKEN})
-            bot.set_webhook("https://vas3k.club" + webhook_uri)
+            bot.set_webhook("https://phangan.me" + webhook_uri)
 
         self.stdout.write("Done 🥙")
