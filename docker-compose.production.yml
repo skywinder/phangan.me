@@ -58,7 +58,7 @@ services:
       POSTGRES_PASSWORD: vas3k
       POSTGRES_DB: vas3k_club
     volumes:
-      - /home/phangan/pgdata:/var/lib/postgresql/data:rw
+      - /var/www/pgdata:/var/lib/postgresql/data:rw
     ports:
       - "54333:5432"
 
