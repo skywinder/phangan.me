@@ -68,3 +68,18 @@ services:
     restart: always
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
+
+  nginx:
+    image: nginx:alpine
+    container_name: club_nginx
+    restart: always
+    tty: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./:/var/www/phangan.me/
+      - ./etc/nginx/vas3k.club.conf/:/etc/nginx/conf.d/vas3k.club.conf
+      - ./etc/nginx/i.vas3k.club.conf/:/etc/nginx/conf.d/i.vas3k.club.conf
+    depends_on:
+      - club_app
