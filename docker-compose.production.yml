@@ -3,13 +3,13 @@ version: "3.7"
 services:
   club_app: &app
     build:
-      dockerfile: production.dockerfile
+      dockerfile: dev.dockerfile
       context: .
     command: make docker-run-production
     container_name: club_app
     environment:
       - PYTHONUNBUFFERED=1
-      - DEBUG=false
+      - DEBUG=true
       - APP_HOST=https://phangan.me
       - MEDIA_UPLOAD_URL=https://i.phangan.me/upload/
       - POSTGRES_DB=vas3k_club
@@ -20,7 +20,7 @@ services:
       - REDIS_HOST=redis
     restart: always
     volumes:
-      - ./frontend/static:/app/frontend/static
+      - ./frontend:/app/frontend/
       - ./gdpr/downloads:/app/gdpr/downloads
     depends_on:
       - postgres
@@ -69,8 +69,25 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
 
+  pepic:
+    build: ../i.phangan.me
+    container_name: pepic
+    environment: # check out pepic/config/app.go for more env variables
+      - BASE_URL=http://i.phangan.me/
+      - STORAGE_DIR=/uploads
+      - SECRET_CODE=w@tareyoulooking?
+      - IMAGE_ORIGINAL_LENGTH=1400
+      - MAX_UPLOAD_SIZE=100M
+    volumes:
+      - ../i.phangan.me/uploads:/uploads
+    ports:
+      - 8118:8118
+    user: "0" # set your real uid (by default only root can read the uploaded files)
+    restart: unless-stopped
+
   nginx:
     image: nginx:alpine
+    # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     container_name: club_nginx
     restart: always
     tty: true
@@ -81,5 +98,16 @@ services:
       - ./:/var/www/phangan.me/
       - ./etc/nginx/vas3k.club.conf/:/etc/nginx/conf.d/vas3k.club.conf
       - ./etc/nginx/i.vas3k.club.conf/:/etc/nginx/conf.d/i.vas3k.club.conf
+  #    - ./etc/certbot/conf:/etc/letsencrypt
+  #    - ./etc/certbot/www:/var/www/certbot
     depends_on:
       - club_app
+      - pepic
+
+  #certbot:
+  #  image: certbot/certbot
+  #  container_name: certbot
+  #  entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  #  volumes:
+  #    - ./etc/certbot/conf:/etc/letsencrypt
+  #    - ./etc/certbot/www:/var/www/certbot
