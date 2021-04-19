@@ -13,6 +13,7 @@ from landing.views import landing, docs, god_settings
 from misc.views import achievements, network, robots, generate_ical_invite, generate_google_invite
 from notifications.views import weekly_digest, email_unsubscribe, email_confirm, daily_digest, email_digest_switch, \
     link_telegram
+from notifications.webhooks import webhook_event
 from payments.views import membership_expired, pay, done, stripe_webhook, stop_subscription
 from posts.api import md_show_post, api_show_post
 from posts.models.post import Post
@@ -28,7 +29,7 @@ from search.views import search
 from users.api import api_profile
 from users.views.delete_account import request_delete_account, confirm_delete_account
 from users.views.messages import on_review, rejected, banned
-from users.views.profile import profile, toggle_tag, add_expertise, delete_expertise
+from users.views.profile import profile, toggle_tag, add_expertise, delete_expertise, profile_comments, profile_posts
 from users.views.settings import profile_settings, edit_profile, edit_account, edit_notifications, edit_payments, \
     edit_bot, edit_data, request_data
 from users.views.intro import intro
@@ -61,6 +62,8 @@ urlpatterns = [
 
     path("user/<slug:user_slug>/", profile, name="profile"),
     path("user/<slug:user_slug>.json", api_profile, name="api_profile"),
+    path("user/<slug:user_slug>/comments/", profile_comments, name="profile_comments"),
+    path("user/<slug:user_slug>/posts/", profile_posts, name="profile_posts"),
     path("user/<slug:user_slug>/edit/", profile_settings, name="profile_settings"),
     path("user/<slug:user_slug>/edit/profile/", edit_profile, name="edit_profile"),
     path("user/<slug:user_slug>/edit/account/", edit_account, name="edit_account"),
@@ -120,6 +123,7 @@ urlpatterns = [
          name="email_digest_switch"),
     path("notifications/renderer/digest/weekly/", weekly_digest, name="render_weekly_digest"),
     path("notifications/renderer/digest/daily/<slug:user_slug>/", daily_digest, name="render_daily_digest"),
+    path("notifications/webhook/<slug:event_type>", webhook_event, name="webhook_event"),
 
     path("docs/<slug:doc_slug>/", docs, name="docs"),
 

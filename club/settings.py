@@ -18,6 +18,10 @@ TESTS_RUN = True if os.getenv("TESTS_RUN") else False
 ALLOWED_HOSTS = ["*", "127.0.0.1", "localhost", "0.0.0.0", "phangan.me"]
 INTERNAL_IPS = ["127.0.0.1"]
 
+ADMINS = [
+    ("Admin", "club@vas3k.club"),
+]
+
 INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
@@ -54,7 +58,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, "notifications/telegram/templates"),
             os.path.join(BASE_DIR, "frontend/html"),
         ],
-        "APP_DIRS": False,
+        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -69,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "club.wsgi.application"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGGING = {
     "version": 1,
@@ -149,6 +154,16 @@ CACHES = {
 
 LANDING_CACHE_TIMEOUT = 60 * 60 * 24
 
+# Email
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "email-smtp.eu-central-1.amazonaws.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Вастрик.Клуб <club@vas3k.club>"
+
 # App
 
 APP_HOST = os.environ.get("APP_HOST") or "http://127.0.0.1:8000"
@@ -165,6 +180,8 @@ AUTH_MAX_CODE_ATTEMPTS = 3
 DEFAULT_PAGE_SIZE = 70
 SEARCH_PAGE_SIZE = 25
 PEOPLE_PAGE_SIZE = 18
+PROFILE_COMMENTS_PAGE_SIZE = 100
+PROFILE_POSTS_PAGE_SIZE = 30
 
 COMMUNITY_APPROVE_UPVOTES = 20
 
@@ -204,10 +221,6 @@ c+Ha7cw3U+n6KI4idHLiwa0CAwEAAQ==
 -----END PUBLIC KEY-----"""
 JWT_ALGORITHM = "RS256"
 JWT_EXP_TIMEDELTA = timedelta(days=120)
-
-MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.vas3k.club"
-MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-MAILGUN_EMAIL_FROM = "Вастрик.Клуб <club@vas3k.club>"
 
 MEDIA_UPLOAD_URL = "https://i.phangan.me/upload/multipart/"
 MEDIA_UPLOAD_CODE = os.getenv("MEDIA_UPLOAD_CODE")
@@ -255,6 +268,8 @@ DELETED_USERNAME = "deleted"
 
 NEW_USER_INVITES = 2
 
+WEBHOOK_SECRETS = set(os.getenv("WEBHOOK_SECRETS", "").split(","))
+
 WEBPACK_LOADER = {
     "DEFAULT": {
         "CACHE": not DEBUG,
@@ -279,6 +294,6 @@ if SENTRY_DSN and not DEBUG:
         }
     }
 
-# if DEBUG:
-#     INSTALLED_APPS += ["debug_toolbar"]
-#     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
