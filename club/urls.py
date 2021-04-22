@@ -123,7 +123,7 @@ urlpatterns = [
 
     path("docs/<slug:doc_slug>/", docs, name="docs"),
 
-    # path("network/", network, name="network"),
+    path("network/", network, name="network"),
 
     # admin features
     path("godmode/", god_settings, name="god_settings"),
