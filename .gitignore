@@ -54,3 +54,6 @@ venv/
 
 gdpr/downloads/*.zip
 etc/certbot/*
+.gitsecret/keys/random_seed
+!*.secret
+phangan_club.env
