@@ -150,7 +150,6 @@
     color: var(--button-color);
     text-align: center;
     cursor: pointer;
-    line-height: 1em;
     font-weight: 500;
 }
 
