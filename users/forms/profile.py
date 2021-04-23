@@ -16,35 +16,35 @@ class ProfileEditForm(ModelForm):
         resize=(512, 512),
         convert_to="jpg",
     )
-    city = forms.CharField(
-        label="город",
-        required=True,
-        max_length=120
-    )
+    # city = forms.CharField(
+    #     label="город",
+    #     required=True,
+    #     max_length=120
+    # )
     country = forms.ChoiceField(
-        label="Страна",
+        label="Район",
         choices=COUNTRIES,
         required=True
     )
-    bio = forms.CharField(
-        label="Ссылочки на себя и всякое такое",
-        required=False,
-        max_length=1024,
-        widget=forms.Textarea(attrs={"maxlength": 1024}),
-    )
-    company = forms.CharField(
-        label="Компания",
-        required=True,
-        max_length=128
-    )
+    # bio = forms.CharField(
+    #     label="Ссылочки на себя и всякое такое",
+    #     required=False,
+    #     max_length=1024,
+    #     widget=forms.Textarea(attrs={"maxlength": 1024}),
+    # )
+    # company = forms.CharField(
+    #     label="Компания",
+    #     required=True,
+    #     max_length=128
+    # )
     position = forms.CharField(
-        label="Должность или что вы делаете",
+        label="О себе",
         required=True,
         max_length=128
     )
     contact = forms.CharField(
         label="Контакт для связи",
-        required=True,
+        required=False,
         max_length=256,
     )
 
@@ -52,11 +52,11 @@ class ProfileEditForm(ModelForm):
         model = User
         fields = [
             "avatar",
-            "company",
+            # "company",
             "position",
-            "city",
+            # "city",
             "country",
-            "bio",
+            # "bio",
             "contact",
         ]
 
@@ -115,4 +115,3 @@ class ExpertiseForm(ModelForm):
         if custom_expertise:
             instance.name = custom_expertise
         return instance
-

@@ -77,14 +77,15 @@
 
             <div class="form-row">
                 <label for="{{ form.country.id_for_label }}" class="form-label">
-                    {{ form.country.label }} и {{ form.city.label }}
+                    {{ form.country.label }}
                 </label>
-                {{ form.country }} {{ form.city }}
+                {{ form.country }}
                 {% if form.country.errors %}<span class="form-row-errors">{{ form.country.errors }}</span>{% endif %}
-                {% if form.city.errors %}<span class="form-row-errors">{{ form.city.errors }}</span>{% endif %}
+                <!-- {% if form.city.errors %}<span class="form-row-errors">{{ form.city.errors }}</span>{% endif %} -->
                 <span class="form-row-help">Вдруг мы решим собраться на митап или типа того.</span>
             </div>
 
+            {% comment %}
             <div class="form-row">
                 <label for="{{ form.bio.id_for_label }}" class="form-label">
                     {{ form.bio.label }}
@@ -93,6 +94,7 @@
                 {% if form.bio.errors %}<span class="form-row-errors">{{ form.bio.errors }}</span>{% endif %}
                 <span class="form-row-help">Всё, что вы бы хотели видеть в профиле под своим именем. Ссылки на ваш блог, твиттер, канал, подкаст, приветы маме, и т.д. Свободный формат. Используйте Эмодзи и <a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown</a> чтобы сделать красиво.</span>
             </div>
+            {% endcomment %}
 
             <div class="form-row">
                 <label for="{{ form.contact.id_for_label }}" class="form-label">
@@ -128,6 +130,7 @@
                 {% if form.position.errors %}<span class="form-row-errors">{{ form.position.errors }}</span>{% endif %}
             </div>
 
+            {% comment %}
             <div class="form-row">
                 <label for="{{ form.company.id_for_label }}" class="form-label">
                     {{ form.company.label }}
@@ -135,6 +138,7 @@
                 {{ form.company }}
                 {% if form.company.errors %}<span class="form-row-errors">{{ form.company.errors }}</span>{% endif %}
             </div>
+            {% endcomment %}
 
             <div class="block-header">😎<br>Расскажите Клубу о себе</div>
 

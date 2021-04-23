@@ -30,6 +30,7 @@
                     {% if form.avatar.errors %}<span class="form-row-errors">{{ form.avatar.errors }}</span>{% endif %}
                 </div>
 
+                {% comment %}
                 <div class="form-row">
                     <label for="{{ form.company.id_for_label }}" class="form-label">
                         Компания
@@ -37,10 +38,11 @@
                     {{ form.company }}
                     {% if form.company.errors %}<span class="form-row-errors">{{ form.company.errors }}</span>{% endif %}
                 </div>
+                {% endcomment %}
 
                 <div class="form-row">
                     <label for="{{ form.position.id_for_label }}" class="form-label">
-                        Должность
+                        О себе
                     </label>
                     {{ form.position }}
                     {% if form.position.errors %}<span class="form-row-errors">{{ form.position.errors }}</span>{% endif %}
@@ -48,14 +50,16 @@
 
                 <div class="form-row">
                     <label for="{{ form.country.id_for_label }}" class="form-label">
-                        Страна и город
+                        Где ты живешь
                     </label>
-                    {{ form.country }} {{ form.city }}
+                    {{ form.country }}
+                    <!-- {{ form.city }} -->
                     {% if form.country.errors %}<span class="form-row-errors">{{ form.country.errors }}</span>{% endif %}
-                    {% if form.city.errors %}<span class="form-row-errors">{{ form.city.errors }}</span>{% endif %}
+                    <!-- {% if form.city.errors %}<span class="form-row-errors">{{ form.city.errors }}</span>{% endif %} -->
                     <span class="form-row-help">Вдруг мы решим собраться на митап или типа того</span>
                 </div>
 
+                {% comment %}
                 <div class="form-row">
                     <label for="{{ form.bio.id_for_label }}" class="form-label">
                         Ссылочки на себя и всякое такое
@@ -66,6 +70,7 @@
                         Используйте Markdown и Эмодзи чтобы сделать красиво. Всё зависит от вашего воображения
                     </span>
                 </div>
+                {% endcomment %}
 
                 <div class="form-row">
                     <label for="{{ form.contact.id_for_label }}" class="form-label">
