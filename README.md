@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <img src="frontend/static/images/logo/logo-256.png" alt="">
-  <h1>vas3k.club</h1>
+  <h1>phangan.me</h1>
 </div>
 
 Welcome to the [vas3k.club](https://vas3k.club) codebase. Here we are building our small lifestyle IT community. If you want to help us with that, welcome.
@@ -27,7 +27,7 @@ We try to keep our stack as simple and stupid as possible. Because we're not ver
 2. Clone the repo
 
     ```sh
-    $ git clone https://github.com/vas3k/vas3k.club.git
+    $ git clone https://github.com/skywinder/phangan.me.git
     $ cd vas3k.club
     ```
 
@@ -68,17 +68,17 @@ These pipelines are made as github-actions. Explore the [.github](.github) folde
 
 Contributions are welcome.  
 
-The main point of interaction is the [Issues page](https://github.com/vas3k/vas3k.club/issues).
+The main point of interaction is the [Issues page](https://github.com/skywinder/phangan.me/issues).
 
 Here's our contribution guidelines — [CONTRIBUTING.md](CONTRIBUTING.md).
 
-We also run the public [Github Project Board](https://github.com/vas3k/vas3k.club/projects/3) to track progress and develop roadmaps.
+We also run the public [Github Project Board](https://github.com/skywinder/phangan.me/projects/3) to track progress and develop roadmaps.
 
 > The official development language at the moment is Russian, because 100% of our users speak it. We don't want to introduce unnecessary barriers for them. But we are used to writing commits and comments in English and we won't mind communicating with you in it.
 
 ### 🙋‍♂️ How to report a bug or propose a feature?
 
-- 🆕Open [a new issue](https://github.com/vas3k/vas3k.club/issues/new). 
+- 🆕Open [a new issue](https://github.com/skywinder/phangan.me/issues/new). 
   - 🔦 Please, **use a search**, to check, if there is already exied issue!
 - Explain your idea or proposal in all the details: 
   - If it's a **new feature**:
@@ -91,7 +91,7 @@ We also run the public [Github Project Board](https://github.com/vas3k/vas3k.clu
 
 ### 😎 I want to write some code!
 
-- Open our [Issues page](https://github.com/vas3k/vas3k.club/issues) to see the most important tickets at top. 
+- Open our [Issues page](https://github.com/skywinder/phangan.me/issues) to see the most important tickets at top. 
 - Pick one issue you like and **leave a comment** inside that you're getting it.
 
 **For big changes** open an issues first or (if it's already opened) leave a comment with brief explanation what and why you're going to change. Many tickets hang open not because they cannot be done, but because they cause many logical contradictions that you may not know. It's better to clarify them in comments before sending a PR.
@@ -113,13 +113,13 @@ We also run the public [Github Project Board](https://github.com/vas3k/vas3k.clu
 
 ##### 🟥 Questionable
 
-- [¯\\_(ツ)\_/¯](https://github.com/vas3k/vas3k.club/labels/%C2%AF%5C_%28%E3%83%84%29_%2F%C2%AF) - special label for **questionable issues**. (should be closed in 60 days of inactivity)
+- [¯\\_(ツ)\_/¯](https://github.com/skywinder/phangan.me/labels/%C2%AF%5C_%28%E3%83%84%29_%2F%C2%AF) - special label for **questionable issues**. (should be closed in 60 days of inactivity)
 
 - **[no label]** — ticket is new or controversial. Feel free to discuss it but **wait for our maintainers' decision** before starting to implement it.
 
 ## 👍 Our top contributors
 
-Take some time to press F and give some respects to our [best contributors](https://github.com/vas3k/vas3k.club/graphs/contributors), who spent their own time to make the club better.
+Take some time to press F and give some respects to our [best contributors](https://github.com/skywinder/phangan.me/graphs/contributors), who spent their own time to make the club better.
 
 - [@vas3k](https://github.com/vas3k)
 - [@nlopin](https://github.com/nlopin)
