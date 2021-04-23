@@ -4,9 +4,9 @@ Bug reports and pull requests from users are what keep this project working.
 
 ## 😍 Contributions are welcome
 
-The main point of interaction is the [Issues page](https://github.com/vas3k/vas3k.club/issues).
+The main point of interaction is the [Issues page](https://github.com/skywinder/phangan.me/issues).
 
-We also run the public [Github Project Board](https://github.com/vas3k/vas3k.club/projects/3) to track progress and develop roadmaps.
+We also run the public [Github Project Board](https://github.com/skywinder/phangan.me/projects/3) to track progress and develop roadmaps.
 
 > The official development language at the moment is Russian, because 100% of our users speak it. We don't want to introduce unnecessary barriers for them. But we are used to writing commits and comments in English and we won't mind communicating with you in it.
 
@@ -14,7 +14,7 @@ We also run the public [Github Project Board](https://github.com/vas3k/vas3k.clu
 
 ## 🙋‍♂️ How to report a bug or propose a feature?
 
-- 🆕Open [a new issue](https://github.com/vas3k/vas3k.club/issues/new). 
+- 🆕Open [a new issue](https://github.com/skywinder/phangan.me/issues/new). 
   - 🔦 Please, **use a search**, to check, if there is already exied issue!
 - Explain your idea or proposal in all the details: 
   - If it's a **new feature**:
@@ -27,7 +27,7 @@ We also run the public [Github Project Board](https://github.com/vas3k/vas3k.clu
 
 ## 😎 I want to write some code!
 
-- Open our [Issues page](https://github.com/vas3k/vas3k.club/issues) to see the most important tickets at top. 
+- Open our [Issues page](https://github.com/skywinder/phangan.me/issues) to see the most important tickets at top. 
 - Pick one issue you like and **leave a comment** inside that you're getting it.
 
 **For big changes** open an issues first or (if it's already opened) leave a comment with brief explanation what and why you're going to change. Many tickets hang open not because they cannot be done, but because they cause many logical contradictions that you may not know. It's better to clarify them in comments before sending a PR.
@@ -49,14 +49,14 @@ We also run the public [Github Project Board](https://github.com/vas3k/vas3k.clu
 
 ##### 🟥 Questionable
 
-- [¯\\_(ツ)_/¯](https://github.com/vas3k/vas3k.club/labels/ ̄\_(ツ)_%2F ̄) - special label for **questionable issues**. (should be closed in 60 days of inactivity)
+- [¯\\_(ツ)_/¯](https://github.com/skywinder/phangan.me/labels/ ̄\_(ツ)_%2F ̄) - special label for **questionable issues**. (should be closed in 60 days of inactivity)
 
 - **[no label]** — ticket is new or controversial. Feel free to discuss it but **wait for our maintainers' decision** before starting to implement it.
 
 ## 👶 GitHub Basics
 
 1. Create an issue and describe your idea
-2. [Fork it](https://github.com/vas3k/vas3k.club/fork)
+2. [Fork it](https://github.com/skywinder/phangan.me/fork)
 3. Create your feature branch (`git checkout -b my-new-feature`)
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Publish the branch (`git push origin my-new-feature`)

@@ -152,7 +152,7 @@ LANDING_CACHE_TIMEOUT = 60 * 60 * 24
 # App
 
 APP_HOST = os.environ.get("APP_HOST") or "http://127.0.0.1:8000"
-APP_NAME = "Вастрик.Клуб"
+APP_NAME = "Панган.Клуб"
 APP_DESCRIPTION = "Всё интересное происходит за закрытыми дверями"
 LAUNCH_DATE = datetime(2020, 4, 13)
 
@@ -205,9 +205,9 @@ c+Ha7cw3U+n6KI4idHLiwa0CAwEAAQ==
 JWT_ALGORITHM = "RS256"
 JWT_EXP_TIMEDELTA = timedelta(days=120)
 
-MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.vas3k.club"
+MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.phangan.me"
 MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-MAILGUN_EMAIL_FROM = "Вастрик.Клуб <club@vas3k.club>"
+MAILGUN_EMAIL_FROM = "Панган.Клуб <club@phangan.me>"
 
 MEDIA_UPLOAD_URL = "https://i.phangan.me/upload/multipart/"
 MEDIA_UPLOAD_CODE = os.getenv("MEDIA_UPLOAD_CODE")
@@ -247,7 +247,7 @@ POST_HOTNESS_PERIOD = timedelta(days=5)
 MAX_COMMENTS_FOR_DELETE_VS_CLEAR = 10
 CLEARED_POST_TEXT = "```\n" \
     "😥 Этот пост был удален самим автором и от него остались лишь комментарии участников. " \
-    "Если вы хотите приютить и развить эту тему как новый автор, напишите модераторам Клуба: moderator@vas3k.club." \
+    "Если вы хотите приютить и развить эту тему как новый автор, напишите модераторам Клуба: moderator@phangan.me." \
     "\n```"
 
 MODERATOR_USERNAME = "moderator"
