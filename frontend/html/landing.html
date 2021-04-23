@@ -21,8 +21,8 @@
 
 {% block body %}
     <main class="landing">
-        <div class="landing-block landing-block-limited">
-            <img src="{% static "images/logo/logo-1024.png" %}" alt="">
+        <div class="landing-block landing-block-title landing-block-limited">
+            <img src="{% static "images/logo/mandala.svg" %}" alt="Logo image">
             <div class="landing-title">
                 <h1>Панган.Клуб</h1>
                 <p>Всё самое интересное происходит за закрытыми дверями</p>
@@ -30,26 +30,48 @@
             </div>
         </div>
 
-        <div class="landing-block landing-block-narrow" id="why">
+        <div class="landing-block landing-block-limited" id="why">
             <div>
-                <h2>ЗАЧЕМ</h2>
+                <h2>ЗАЧЕМ НУЖЕН ЕЩЕ ОДИН САЙТ?</h2>
 
                 <p>
-                    Клуб — это наше закрытое и в меру айтишное сообщество, в котором мы обсуждаем важные темы вдали от большого интернета.
+                    Окей, у нас есть отличный информационный сайт phangan.ru.
+                    Он избавляет сообщество от одинаковых из года в год вопросов от новичков про то,
+                    как добраться до острова, как продлить визы и где купить борщ.
                 </p>
 
                 <p>
-                    У нас нет секретной цели, желания захватить мир и другой идейной херни.
-                    Мы лишь собрались здесь чтобы наконец-то поговорить честно и открыто, вдали от посторонних глаз.
+                    Помимо этого есть тематические и общие чаты в телеграме.
+                    Проблема с чатами в том, что их через чур много,
+                    и каждый пользователь зачастую дублирует свое сообщение в несколько чатов.
+                    За день набирается более 100 сообщений, и качественно просмотреть даже один чат под силу только настоящим йогам. 
                 </p>
             </div>
         </div>
 
         <div class="landing-block landing-block-limited" id="features">
-            <h2 class="landing-block-title">Что внутри?</h2>
+            <h2>В ЧЕМ ЦЕННОСТЬ КЛУБА?</h2>
+
+            <ul>
+                <li>Сообщество адекватных людей и единомышленников</li>
+                <li>Пространство для идей и обмена инсайтами</li>
+            </ul>
         </div>
 
-        <div class="landing-block landing-block-limited">
+        <div class="landing-block landing-block-limited" id="current">
+            <h2>ОК, И ЧТО ТЕПЕРЬ?</h2>
+
+            <p>
+                Мы все еще находимся в процессе доработки проекта,
+                наполняем страницы статьями, наводим красоту, развешиваем гирлянды.
+                Сначала мы пригласили наших друзей, чтобы вдохнуть жизнь в проект.
+                Друзья могут приглашать своих друзей, у каждого человека есть по пять инвайтов.
+                Постепенно мы сделаем доступ открытым для всех, кто будет готов ежемесячно оплачивать
+                членство в эквиваленте ONE COCONUT.
+            </p>
+        </div>
+
+        <!-- <div class="landing-block landing-block-limited">
             <div class="landing-block-40">
                 <h3 class="feature-title">Чужой опыт и инсайды</h3>
 
@@ -130,9 +152,9 @@
                     <a href="https://vas3k.club/post/5774/" target="_blank" class="landing-post-link">&nbsp;</a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="landing-block landing-screenshots hide-on-iphone">
+        <!-- <div class="landing-block landing-screenshots hide-on-iphone">
             <a href="https://vas3k.club/post/1289/" target="_blank" class="landing-screenshot">
                 <img src="{% static "images/landing/posts/p00003.png" %}" alt="post">
             </a>
@@ -148,50 +170,47 @@
             <a href="https://vas3k.club/post/1494/" target="_blank" class="landing-screenshot">
                 <img src="{% static "images/landing/posts/p00009.png" %}" alt="post">
             </a>
-        </div>
+        </div> -->
 
         <div class="landing-block landing-block-limited">
-            <div class="landing-block-50">
+            <!-- <div class="landing-block-50">
                 <img src="{% static "images/landing/rooms.png" %}" class="feature-image" alt="chats" style="padding-top: 40px;">
-            </div>
+            </div> -->
 
-            <div class="landing-block-50">
-                <h3 class="feature-title">Тусовки по интересам</h3>
+            <h3 class="feature-title">Тусовки по интересам</h3>
 
-                <ul class="feature-list">
-                    <li>Сеть клубных чатиков в телеграме</li>
-                    <li>Коммьюнити по городам и странам</li>
-                    <li>АМА с экспертами и отзывчивые участники</li>
-                    <li>Место, в котором хорошо</li>
-                </ul>
-            </div>
+            <ul class="feature-list">
+                <li>Глубокие обсуждения на актуальные темы</li>
+                <li>Устоявшееся мудрейшее коммьюнити</li>
+                <li>Обнимашки и лучики добра</li>
+                <li>Здесь всем откликается ))</li>
+            </ul>
         </div>
 
-        <div class="landing-block landing-block-chats">
+        <!-- <div class="landing-block landing-block-chats">
             <img src="{% static "images/landing/chats1.png" %}" class="feature-image" alt="chats">
             <img src="{% static "images/landing/chats2.png" %}" class="feature-image" alt="chats">
             <img src="{% static "images/landing/chats3.png" %}" class="feature-image" alt="chats">
             <img src="{% static "images/landing/chats4.png" %}" class="feature-image" alt="chats">
-        </div>
+        </div> -->
 
         <div class="landing-block landing-block-limited">
-            <div class="landing-block-40">
-                <h3 class="feature-title">Движухи, фан и взаимопомощь</h3>
+            <h3 class="feature-title">Движухи и общение</h3>
 
-                <ul class="feature-list">
-                    <li>Митапы и онлайн-сходки</li>
-                    <li>Коучинг и менторство между участниками Клуба</li>
-                    <li>У нас запрещена анонимность и действует жесткая модерация. Так мы сохраняем здоровое коммьюнити без говна</li>
-                    <li>Подробнее о правилах можно почитать в разделе <a href="{% url "docs" "about" %}" target="_blank">О Клубе</a></li>
-                </ul>
-            </div>
-
-            <div class="landing-block-60">
-                <img src="{% static "images/landing/activities.png" %}" class="feature-image" alt="chats">
-            </div>
+            <ul class="feature-list">
+                <li>Закрытые мероприятия и лекции для участников</li>
+                <li>Взаимопомощь между участниками</li>
+                <li>У нас запрещена анонимность и действует жесткая модерация. Так мы не допускаем негативную энергию в Клуб</li>
+                <li>Подробнее о правилах можно почитать в разделе <a href="{% url "docs" "about" %}" target="_blank">О Клубе</a></li>
+            </ul>
         </div>
 
-        <div class="landing-block landing-block-limited landing-block-map-title" id="map">
+            <!-- <div class="landing-block-60">
+                <img src="{% static "images/landing/activities.png" %}" class="feature-image" alt="chats">
+            </div>
+        </div> -->
+
+        <!-- <div class="landing-block landing-block-limited landing-block-map-title" id="map">
             <h3 class="feature-title">Недушное коммьюнити</h3>
         </div>
 
@@ -225,20 +244,28 @@
                     <div class="map-counter">25+ чатов</div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="landing-block landing-block-narrow" id="join">
+        <div class="landing-block landing-block-limited" id="join">
             <div>
-                <h2 class="landing-block-title">Как вступить?</h2>
+                <h2>Как вступить?</h2>
 
-                <img src="{% static "images/landing/dolor.png" %}" alt="$1" class="landing-dolor">
+                <!-- <img src="{% static "images/landing/dolor.png" %}" alt="$1" class="landing-dolor"> -->
 
                 <p>
-                    Членство в Клубе платное. Это позволяет нам оставаться независимыми от мнения инвесторов или рекламодателей.
+                    На данном этапе вступление в клуб пока только по инвайтам.
+                    Поспрашивайте своих друзей, найдите нужные слова или правильно подмигните,
+                    и вероятно, у кого-то из них найдется для вас инвайт.
                 </p>
 
                 <p>
-                    Плюс, мы не пускаем анонимов. Вам придется заполнить профиль и рассказать о себе.
+                    В дальнейшем членство будет платным и равняться ONE COCONUT в месяц.
+                    Это позволит нам сохранить чистоту Клуба и его сообщества.
+                </p>
+
+                <p>
+                    Ах да, маленькое замечание - мы не пускаем анонимов.
+                    Пожалуйста, заполните профиль полностью и расскажите о себе. 
                 </p>
 
                 <br>
@@ -254,9 +281,9 @@
 {% block footer %}
     <footer class="footer">
         <div class="footer-left" style="text-align: center; font-size: 130%;">
-            &copy; <a href="https://vas3k.ru" target="_blank">Вастрик</a> {% now "Y" %}
+            &copy; <a href="https://oxor.io" target="_blank">Петр Сергеевич</a> {% now "Y" %}
             &nbsp;&nbsp;&nbsp;&infin;&nbsp;&nbsp;&nbsp;
-            <a href="{% url "docs" "contact" %}">Связаться с нами</a><br><br>
+            <a href="https://t.me/skywinder">Связаться с нами</a><br><br>
         </div>
     </footer>
 {% endblock %}
