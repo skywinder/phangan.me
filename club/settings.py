@@ -205,7 +205,7 @@ c+Ha7cw3U+n6KI4idHLiwa0CAwEAAQ==
 JWT_ALGORITHM = "RS256"
 JWT_EXP_TIMEDELTA = timedelta(days=120)
 
-MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.vas3k.club"
+MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.phangan.me"
 MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
 MAILGUN_EMAIL_FROM = "Панган.Клуб <club@oxor.io>"
 
