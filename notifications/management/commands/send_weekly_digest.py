@@ -75,7 +75,7 @@ class Command(BaseCommand):
         for user in subscribed_users:
             self.stdout.write(f"Sending to {user.email}...")
 
-            if not options.get("production") and user.email != "me@vas3k.ru":
+            if not options.get("production") and user.email != "me@phangan.me":
                 self.stdout.write("Test mode. Use --production to send the digest to all users")
                 continue
 
