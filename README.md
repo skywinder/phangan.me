@@ -135,6 +135,6 @@ Take some time to press F and give some respects to our [best contributors](http
 
 In other words, you can use the code for private and commercial purposes with an author attribution (by including the original license file or mentioning the Club 🎩).
 
-Feel free to contact us via email [club@vas3k.club](mailto:club@vas3k.club).
+Feel free to contact us via email [club@oxor.io](mailto:club@oxor.io).
 
 ❤️
