@@ -75,6 +75,21 @@
             display: block;
         }
 
+.landing-block-title {
+    height: 100vh;
+    text-align: center;
+}
+
+.landing-block-title img {
+    height: 100%;
+}
+
+.landing-block-title .button {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+}
+
 .landing-block-chats {
     width: 100%;
     max-width: 2000px;
@@ -108,7 +123,7 @@
 
 .landing-title {
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     font-size: 40px;
@@ -125,10 +140,6 @@
         }
     }
 
-.feature {
-
-}
-
     .feature-title {
         font-size: 180%;
         line-height: 1.24em;
@@ -137,6 +148,7 @@
 
     .feature-list {
         padding-top: 30px;
+        width: 50%;
     }
 
         .feature-list li {
