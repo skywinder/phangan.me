@@ -207,7 +207,7 @@ JWT_EXP_TIMEDELTA = timedelta(days=120)
 
 MAILGUN_API_URI = "https://api.eu.mailgun.net/v3/mailgun.phangan.me"
 MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-MAILGUN_EMAIL_FROM = "Панган.Клуб <club@oxor.io>"
+MAILGUN_EMAIL_FROM = "Панган.Клуб <club@phangan.me>"
 
 MEDIA_UPLOAD_URL = "https://i.phangan.me/upload/multipart/"
 MEDIA_UPLOAD_CODE = os.getenv("MEDIA_UPLOAD_CODE")
@@ -247,7 +247,7 @@ POST_HOTNESS_PERIOD = timedelta(days=5)
 MAX_COMMENTS_FOR_DELETE_VS_CLEAR = 10
 CLEARED_POST_TEXT = "```\n" \
     "😥 Этот пост был удален самим автором и от него остались лишь комментарии участников. " \
-    "Если вы хотите приютить и развить эту тему как новый автор, напишите модераторам Клуба: moderator@oxor.io." \
+    "Если вы хотите приютить и развить эту тему как новый автор, напишите модераторам Клуба: moderator@phangan.me." \
     "\n```"
 
 MODERATOR_USERNAME = "moderator"
