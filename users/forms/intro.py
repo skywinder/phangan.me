@@ -43,7 +43,7 @@ class UserIntroForm(ModelForm):
     country = forms.ChoiceField(
         label="Район",
         choices=COUNTRIES,
-        required=True
+        required=False
     )
     # bio = forms.CharField(
     #     label="Ссылочки на себя и всякое такое",
@@ -53,7 +53,7 @@ class UserIntroForm(ModelForm):
     # )
     contact = forms.CharField(
         label="Контакт для связи",
-        required=True,
+        required=False,
         max_length=256,
     )
     # company = forms.CharField(
@@ -63,23 +63,22 @@ class UserIntroForm(ModelForm):
     # )
     position = forms.CharField(
         label="О себе",
-        required=True,
+        required=False,
         max_length=128
     )
     intro = forms.CharField(
         label="#intro",
-        required=True,
+        required=False,
         widget=forms.Textarea(
             attrs={
                 "maxlength": 10000,
-                "minlength": 600,
                 "placeholder": "Расскажите Клубу о себе...",
             }
         ),
     )
     email_digest_type = forms.ChoiceField(
         label="Подписка на дайджест",
-        required=True,
+        required=False,
         choices=User.EMAIL_DIGEST_TYPES,
         initial=User.EMAIL_DIGEST_TYPE_WEEKLY,
         widget=forms.RadioSelect(),
