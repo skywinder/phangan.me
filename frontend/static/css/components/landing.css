@@ -51,7 +51,7 @@
         }
 
         .landing-block p {
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
             @media only screen and (max-width : 570px) {
@@ -128,6 +128,14 @@
     transform: translateX(-50%) translateY(-50%);
     font-size: 40px;
     line-height: 1.2em;
+}
+
+.landing-title h1 {
+    margin: 0;
+}
+
+.landing-title p {
+    margin: 40px 0;
 }
 
     @media only screen and (max-width : 570px) {
