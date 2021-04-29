@@ -45,9 +45,14 @@ def upload_image_multipart(
     if quality:
         upload_params["quality"] = quality
 
+    upload_url = settings.MEDIA_UPLOAD_URL
+    if not settings.DEBUG:
+        # on production docker container doesn't have access to host, so we can't use domain call
+        parsed = urlparse(upload_url)
+        upload_url = parsed._replace(netloc="pepic:8118").geturl()
     try:
         uploaded = requests.post(
-            url=settings.MEDIA_UPLOAD_URL,
+            url=upload_url,
             params=upload_params,
             files={"media": (filename, data)},
             headers={"Accept": "application/json"},

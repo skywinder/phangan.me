@@ -11,7 +11,6 @@ services:
       - PYTHONUNBUFFERED=1
       - DEBUG=true
       - APP_HOST=https://phangan.me
-      - MEDIA_UPLOAD_URL=https://i.phangan.me/upload/
       - POSTGRES_DB=vas3k_club
       - POSTGRES_USER=vas3k
       - POSTGRES_PASSWORD=vas3k
