@@ -49,7 +49,7 @@ def upload_image_multipart(
     if not settings.DEBUG:
         # on production docker container doesn't have access to host, so we can't use domain call
         parsed = urlparse(upload_url)
-        upload_url = parsed._replace(netloc="pepic:8118").geturl()
+        upload_url = parsed._replace(scheme="http", netloc="pepic:8118").geturl()
     try:
         uploaded = requests.post(
             url=upload_url,
