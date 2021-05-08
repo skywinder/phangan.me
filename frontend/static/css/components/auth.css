@@ -77,6 +77,7 @@
             display: block;
             margin: 20px;
             width: 460px;
+            text-align: center;
         }
 
             .login-service-title {
@@ -89,8 +90,8 @@
                 font-size: 90%;
             }
 
-            .login-service-form {
-
+            .login-service-form input {
+                max-width: 90%;
             }
 
             .login-email {
@@ -98,8 +99,9 @@
             }
 
             .login-button {
-                margin-top: 20px;
-                min-width: 170px;
+                margin-top: 24px;
+                font-size: 24px;
+                min-width: 240px;
             }
 
             .login-button-patreon {
