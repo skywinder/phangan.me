@@ -31,3 +31,4 @@ RUN python -c "import nltk; nltk.download('punkt')"
 
 # copy the code
 COPY . /app
+COPY ./phangan_club_dev.env /app/club/.env
