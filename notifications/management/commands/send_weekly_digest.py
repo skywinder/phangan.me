@@ -6,6 +6,7 @@ import requests
 import telegram
 from django.conf import settings
 from django.core.management import BaseCommand
+from django.test import Client
 from django.urls import reverse
 
 from notifications.telegram.common import send_telegram_message, CLUB_CHANNEL, render_html_message
@@ -26,22 +27,23 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # render digest using a special html endpoint
-        digest_url = "https://phangan.me" + reverse("render_weekly_digest")
+        digest_url = reverse("render_weekly_digest")
+
         self.stdout.write(f"Generating digest: {digest_url}")
 
-        digest_html_response = requests.get(digest_url)
-        if digest_html_response.status_code > 400:
-            log.error("Weekly digest error: bad status code", extra={"html": digest_html_response.text})
+        digest_response = Client().get(digest_url)
+        digest_html = digest_response.content
+
+        if digest_response.status_code > 400:
+            log.error("Weekly digest error: bad status code", extra={"html": digest_html})
             return
 
-        digest_html = digest_html_response.text
+        no_footer_digest_response = Client().get(f'{digest_url}?no_footer=1')
+        no_footer_digest_html = no_footer_digest_response.content
 
-        no_footer_digest_response = requests.get(digest_url, params={"no_footer": 1})
         if no_footer_digest_response.status_code > 400:
-            log.error("Weekly digest without footer error: bad status code", extra={"html": no_footer_digest_response.text})
+            log.error("Weekly digest without footer error: bad status code", extra={"html": no_footer_digest_html})
             return
-
-        no_footer_digest_html = no_footer_digest_response.text
 
         # save digest as a post
         issue = (datetime.utcnow() - settings.LAUNCH_DATE).days // 7

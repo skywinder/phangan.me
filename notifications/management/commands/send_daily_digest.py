@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import requests
 from django.core.management import BaseCommand
 from django.template.defaultfilters import date
+from django.test import Client
 from django.urls import reverse
 
 from notifications.email.sender import send_club_email
@@ -36,15 +37,15 @@ class Command(BaseCommand):
                 continue
 
             # render user digest using a special html endpoint
-            digest_url = "https://phangan.me" + reverse("render_daily_digest", kwargs={"user_slug": user.slug})
+            digest_url = reverse("render_daily_digest", kwargs={"user_slug": user.slug})
             self.stdout.write(f"Generating digest for user: {user.slug}")
 
-            digest_html_response = requests.get(digest_url)
-            if digest_html_response.status_code > 400:
+            digest_response = Client().get(digest_url)
+            if digest_response.status_code > 400:
                 log.error("Empty digest. Skipping")
                 continue
 
-            user_digest_html = digest_html_response.text
+            user_digest_html = digest_response.content
             user_digest_html = user_digest_html\
                 .replace("%username%", user.slug)\
                 .replace("%user_id%", str(user.id))\
