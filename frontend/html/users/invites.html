@@ -10,20 +10,21 @@
     <div class="content user-edit">
         <div class="form-title">📬<br>Ваши инвайты</div>
 
-        <br><br>
+        <br>
 
         {% if active_invites %}
             <div class="block-description block-description-center">
                 Активные ({{ active_invites | length }})
             </div>
 
-            <ol>
+            <ol class="copy-invite">
             {% for invite in active_invites %}
-                <li>
-                    <a href="{{ invite.get_absolute_url }}">{{ invite.id }}</a> - {{ invite.membership_days }} дней
-                </li>
+              <user-invite url="{{ invite.get_absolute_url }}" days="{{ invite.membership_days }}">
+              </user-invite>
             {% endfor %}
             </ol>
+            <br>
+            <br>
         {% endif %}
 
         {% if used_invites %}
@@ -31,12 +32,12 @@
                 Использованные ({{ used_invites | length }})
             </div>
 
-            <ol>
+            <ol class="copy-invite">
             {% for invite in used_invites %}
-                <li>
-                    {{ invite.id }},
-                    {{ invite.used_by.full_name }}
-                    ({{ invite.used_by.created_at }})
+                <li>                    
+                    <strong>{{ invite.used_by.full_name }}</strong>
+                    ({{ invite.used_by.created_at }}),
+                    <i>{{ invite.id }}</i>
                 </li>
             {% endfor %}
             </ol>

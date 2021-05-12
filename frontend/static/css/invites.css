@@ -1,0 +1,26 @@
+.copy-invite li {
+    margin-bottom: 15px;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.copy-invite-item {
+    display: flex;
+    height: 32px;
+}
+
+.copy-invite-item input {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+    max-width: 522px;
+}
+
+.copy-invite-item button {
+    margin-left: 20px;
+    line-height: 100%;
+    padding: 0 20px;
+}
