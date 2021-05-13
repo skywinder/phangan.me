@@ -1546,17 +1546,16 @@
     }
 
     .compose-type {
-        width: 220px;
-        height: 220px;
+        width: 180px;
         text-decoration: none;
         text-align: center;
+        padding: 20px 0;
     }
 
         .compose-type-icon {
             display: block;
             font-size: 70px;
             padding-bottom: 10px;
-            padding-top: 20px;
         }
 
         .compose-type-name {
