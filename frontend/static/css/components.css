@@ -1142,7 +1142,7 @@
                 }
 
 .intro {
-    padding-top: 50px;
+    padding-top: 30px;
     font-size: 120%;
 }
 
@@ -1198,10 +1198,15 @@
             background-position: calc(100% - 8px) center;
         }
 
+        .intro-form textarea {
+          resize: none;
+          padding: 20px;
+        }
+
         .intro-form textarea,
         .intro-form .CodeMirror {
             text-align: left;
-            min-height: 700px;
+            min-height: 300px;
             transform: scale(1);
         }
 
