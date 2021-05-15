@@ -29,14 +29,14 @@
         <h2>Эта страница доступна только участникам Клуба</h2>
 
         <p>
-            Для того, чтоб расширить границы, сначала надо уединиться.
-            Вот <a href="{% url "docs" "about" %}">чуть подробнее</a> о том, что здесь происходит.
+            Для того, чтоб расширить границы, сперва необходимо уединиться.
+            <a href="{% url "docs" "about" %}">Чуть подробнее</a> о том, что здесь происходит.
         </p>
 
         <p style="margin-bottom: 0">
             <br>
             <!-- <a href="{% url "login" %}?goto={{ settings.APP_HOST }}{{ request.path }}" class="button">Войти</a>&nbsp;&nbsp;или&nbsp;&nbsp;<a href="{% url "join" %}" class="button">Вступить в Клуб</a> -->
-            <a href="{% url "login" %}?goto={{ settings.APP_HOST }}{{ request.path }}" class="button" style="width: 160px">Войти</a>
+            <a href="{% url "login" %}?goto={{ settings.APP_HOST }}{{ request.path }}" class="button" style="width: 200px">Войти</a>
         </p>
     </div>
 {% endblock %}
