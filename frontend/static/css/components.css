@@ -1508,7 +1508,7 @@
 
 .menu-button {
     font-size: 80%;
-    padding: 10px 18px;
+    padding: 8px 14px;
 }
 
     @media only screen and (max-width : 570px) {
@@ -1586,9 +1586,10 @@
         padding-bottom: 100px;
     }
 
-.compose-form {
-
-}
+    .compose-btn-text {
+        font-size: 16px;
+        line-height: 16px;
+    }
 
     .compose-form-title input {
         text-align: center;
