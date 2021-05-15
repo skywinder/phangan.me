@@ -10,7 +10,8 @@
         <form action="{% url "edit_notifications" user.slug %}" method="post" class="intro-form" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="form-title">💌<br>Уведомления</div>
+            <div class="form-title">Уведомления 💌</div>
+            <div class="clearfix20"></div>
 
             {% if form.non_field_errors %}
                 <div class="form-row form-row-center">
@@ -21,7 +22,7 @@
             {% endif %}
 
             <div class="block" id="digest-settings">
-                <div class="block-header">📫<br>Как хотите следить за постами и комментами?</div>
+                <div class="block-header">Как хотите следить за постами и комментами?</div>
 
                 {% if not form.instance.is_email_verified %}
                     <br>
@@ -30,8 +31,6 @@
                         Кнопка подтверждения была в «Велком дринке». Если вы удалили то письмо, придётся написать нам <a href="mailto:club@phangan.me">на почту</a>.
                     </div>
                 {% endif %}
-
-                <div class="clearfix20"></div>
 
                 <div class="form-row">
                     <div class="user-edit-digest">
@@ -65,18 +64,22 @@
                     {% if form.email_digest_type.errors %}<span class="form-row-errors">{{ form.email_digest_type.errors }}</span>{% endif %}
                 </div>
 
-                <button type="submit" class="button button-red">Сохранить изменения</button>
+                <button type="submit" class="button button-big" style="margin: 0 0 20px;">Сохранить изменения</button>
             </div>
 
             <div class="block" id="digest-settings">
                 <div class="block-header">Другие способы быть в курсе 👇</div>
 
-                <div class="block-description" style="text-align: left; padding-top: 40px;">
-                    <a href="{{ settings.TELEGRAM_CLUB_CHANNEL_URL }}" rel="noreferrer" target="_blank" style="font-weight: bold;">Телеграм-канал Клуба</a> — туда модераторы отбирают лучший контент. Он же главный источник всех анонсов.<br><br>
-                    <a href="{% url "network" %}" rel="noreferrer" target="_blank" style="font-weight: bold;">Секретные Чаты</a> — наша сеть чатов обо всём. Туда автоматически попадают тематические посты.<br><br>
-                    <a href="{{ settings.TELEGRAM_ONLINE_CHANNEL_URL }}" target="_blank" style="font-weight: bold;">Онлайн</a> — прямой эфир всего. Только для самых хардкорных.<br><br>
-                    <strong>RSS:</strong> <a href="{% url "rss" %}">vas3k.club/posts.rss</a> <a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fvas3k.club%2Fposts.rss" target="_blank" style="font-weight: bold;">[добавить в Feedly]</a><br><br>
-                    <a href="{% url "edit_bot" user.slug %}" target="_blank" style="font-weight: bold;">Подключите нашего бота</a> — он будет приносить уведомления, касающиеся лично вас.
+                <div class="block-description" style="text-align: left;">
+                    <!-- <a href="{{ settings.TELEGRAM_CLUB_CHANNEL_URL }}" rel="noreferrer" target="_blank" style="font-weight: bold;">Телеграм-канал Клуба</a> — туда модераторы отбирают лучший контент. Он же главный источник всех анонсов.<br><br> -->
+                    <a href="{{ settings.TELEGRAM_CLUB_CHANNEL_URL }}" rel="noreferrer" target="_blank" style="font-weight: bold;">Телеграм-канал</a> — главный источник всех анонсов.<br><br>
+                    <!-- <a href="{% url "network" %}" rel="noreferrer" target="_blank" style="font-weight: bold;">Секретные Чаты</a> — наша сеть чатов обо всём. Туда автоматически попадают тематические посты.<br><br> -->
+                    <!-- <a href="{{ settings.TELEGRAM_ONLINE_CHANNEL_URL }}" target="_blank" style="font-weight: bold;">Онлайн</a> — прямой эфир всего. Только для самых хардкорных.<br><br> -->
+                    <a href="{{ settings.TELEGRAM_CLUB_CHAT_URL }}" target="_blank" style="font-weight: bold;">Телеграм-чат</a> — теплый чат для всех участников.<br><br>
+                    <!-- <strong>RSS:</strong> <a href="{% url "rss" %}">vas3k.club/posts.rss</a> <a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fvas3k.club%2Fposts.rss" target="_blank" style="font-weight: bold;">[добавить в Feedly]</a><br><br> -->
+                    <!-- <a href="{% url "edit_bot" user.slug %}" target="_blank" style="font-weight: bold;">Подключите нашего бота</a> — он будет приносить уведомления, касающиеся лично вас. -->
+                    <a href="{% url "edit_bot" user.slug %}" target="_blank" style="font-weight: bold;">Телеграм-бот</a> — присылает уведомления, касающиеся лично вас.
+                    <div class="clearfix20"></div>
                 </div>
             </div>
         </form>
