@@ -376,6 +376,14 @@ input[type=range]:focus::-ms-fill-upper {
         font-size: 130%;
     }
 
+    .form-row:first-of-type {
+        padding-top: 30px;
+    }
+
+    .form-row:last-of-type {
+        padding-bottom: 30px;
+    }
+
         .form-row-center {
             display: flex;
             justify-content: center;

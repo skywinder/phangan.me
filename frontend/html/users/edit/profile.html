@@ -10,7 +10,7 @@
         <form action="{% url "edit_profile" user.slug %}" method="post" class="intro-form" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="form-title">😎<br>Редактирование профиля</div>
+            <div class="form-title">Редактирование профиля</div>
 
             {% if form.non_field_errors %}
                 <div class="form-row form-row-center">
@@ -26,6 +26,8 @@
                         input-id="{{ form.avatar.id_for_label }}"
                         current-avatar="{{ user.get_avatar }}"
                     ></user-avatar-input>
+                    <br>
+                    <br>
                     {{ form.avatar }}
                     {% if form.avatar.errors %}<span class="form-row-errors">{{ form.avatar.errors }}</span>{% endif %}
                 </div>
@@ -50,13 +52,13 @@
 
                 <div class="form-row">
                     <label for="{{ form.country.id_for_label }}" class="form-label">
-                        Где ты живешь
+                        Район поживания
                     </label>
                     {{ form.country }}
                     <!-- {{ form.city }} -->
                     {% if form.country.errors %}<span class="form-row-errors">{{ form.country.errors }}</span>{% endif %}
                     <!-- {% if form.city.errors %}<span class="form-row-errors">{{ form.city.errors }}</span>{% endif %} -->
-                    <span class="form-row-help">Вдруг мы решим собраться на митап или типа того</span>
+                    <!-- <span class="form-row-help">Вдруг мы решим собраться на митап или типа того</span> -->
                 </div>
 
                 {% comment %}
@@ -83,7 +85,7 @@
 
                 <button type="submit" class="button button-big">Сохранить изменения</button>
 
-                <div class="clearfix50"></div>
+                <div class="clearfix20"></div>
             </div>
         </form>
     </div>
