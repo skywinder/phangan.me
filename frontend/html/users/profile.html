@@ -49,9 +49,11 @@
                         {% else %}
                             {{ user.upvotes | rupluralize:"плюсик,плюсика,плюсиков" }}
                         {% endif %}
+                        кармы
                     </span>
                 </div>
-                <a href="{% url "edit_payments" user.slug %}" class="profile-status">
+                <!-- <a href="{% url "edit_payments" user.slug %}" class="profile-status"> -->
+                <div class="profile-status">
                     {% if user.membership_days_left < 150 %}
                         <span class="profile-status-number">{% if user.membership_days_left < 10 %}😱{% else %}😋{% endif %} {{ user.membership_days_left | ceil | cool_number }}</span>
                         <span class="profile-status-text">{{ user.membership_days_left | ceil | rupluralize:"день,дня,дней" }}</span>
@@ -62,7 +64,9 @@
                         <span class="profile-status-number">💎 {{ user.membership_years_left | ceil | cool_number }}</span>
                         <span class="profile-status-text">{{ user.membership_years_left | ceil | rupluralize:"год,года,лет" }}</span>
                     {% endif %}
-                </a>
+                    членства
+                </div>
+                <!-- </a> -->
                 <a href="{% url "user_invites" user.slug %}" class="profile-status">
                     <span class="profile-status-number">📬 {{ invites | cool_number }}</span>
                     <span class="profile-status-text">{{ invites | rupluralize:"инвайт,инвайта,инвайтов" }}</span>
@@ -99,15 +103,15 @@
         {% endif %}
 
         {% if intro %}
-            <div class="block profile-intro">
-                <div class="profile-header">
-                    <a href="{% url "show_post" "intro" intro.slug %}">#intro &rarr;</a>
-                    {% if me.id == user.id %}
-                        <a href="{% url "edit_post" intro.slug  %}" class="button post-edit-button profile-intro-edit">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    {% endif %}
-                </div>
+              <div class="profile-header">
+                  <a href="{% url "show_post" "intro" intro.slug %}">#intro</a>
+                  {% if me.id == user.id %}
+                      <a href="{% url "edit_post" intro.slug  %}" class="profile-intro-edit">
+                          <i class="fas fa-edit"></i>
+                      </a>
+                  {% endif %}
+              </div>
+            <div class="block">
                 <div class="text-body profile-intro-text">
                     {% render_post intro %}
                 </div>
@@ -183,7 +187,8 @@
                             {% endif %}
 
                             {% if user.id == me.id %}
-                                <small><br>Для абстрактных тегов типа «ищу работу» или «могу научить» не забудьте рассказать подробности в интро и указать свою экспертизу ниже. Это поможет другим вас найти!</small>
+                                <br><br>
+                                <small>Для абстрактных тегов типа «ищу работу» или «могу научить» не забудьте рассказать подробности в интро и указать свою экспертизу ниже. Это поможет другим вас найти!</small>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -191,7 +196,7 @@
             {% endfor %}
         {% endif %}
 
-        {% if expertises or me.id == user.id %}
+        <!-- {% if expertises or me.id == user.id %}
             <div class="profile-header">Экспертиза</div>
             <div class="block profile-expertise">
                 {% if expertises %}
@@ -217,7 +222,7 @@
                     </span>
                 {% endif %}
             </div>
-        {% endif %}
+        {% endif %} -->
 
         {% if projects %}
             <div class="profile-header">Проекты</div>
