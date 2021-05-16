@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: "PostUpvote",
+    name: "UserInvite",
     props: {
         url: {
             type: String,
