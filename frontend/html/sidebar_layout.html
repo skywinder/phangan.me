@@ -33,17 +33,8 @@
             <ul class="feed-sidebar-list feed-sidebar-menu feed-sidebar-menu-small">
                 <li>
                     <a href="{% url "feed_type" "question" %}" class="{% if post_type == "question" %}feed-sidebar-menu-selected{% endif %}">
-                        🤔 Вопросы Клубу
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url "feed_type" "idea" %}" class="{% if post_type == "idea" %}feed-sidebar-menu-selected{% endif %}">
-                        💡 Идеи
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url "feed_type" "project" %}" class="{% if post_type == "project" %}feed-sidebar-menu-selected{% endif %}">
-                        🏗 Проекты
+                        <!-- 🤔 Вопросы Клубу -->
+                        🤔 Вопросы
                     </a>
                 </li>
                 <li>
@@ -52,10 +43,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{% url "feed_type" "idea" %}" class="{% if post_type == "idea" %}feed-sidebar-menu-selected{% endif %}">
+                        💡 Идеи
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="{% url "feed_type" "project" %}" class="{% if post_type == "project" %}feed-sidebar-menu-selected{% endif %}">
+                        🏗 Проекты
+                    </a>
+                </li> -->
+
+                <!-- <li>
                     <a href="{% url "feed_type" "battle" %}" class="{% if post_type == "battle" %}feed-sidebar-menu-selected{% endif %}">
                         🤜 Батлы
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{% url "feed_type" "event" %}" class="{% if post_type == "event" %}feed-sidebar-menu-selected{% endif %}">
                         📅 События

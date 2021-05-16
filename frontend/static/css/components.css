@@ -29,7 +29,7 @@
 
 .footer {
     padding: 50px 20px 100px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
     .footer-right {
@@ -381,7 +381,6 @@
 
 .profile {
     padding-top: 50px;
-    padding-bottom: 100px;
     font-size: 110%;
 }
 
@@ -497,11 +496,13 @@
 
         .profile-status {
             text-decoration: none;
-            display: block;
             min-width: 120px;
             max-width: 20%;
             padding: 20px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
             a.profile-status:hover {
@@ -565,8 +566,7 @@
             }
 
     .profile-intro-edit {
-        position: absolute;
-        right: 0;
+        margin-left: 10px;
     }
 
     .profile-achievements {
@@ -742,8 +742,12 @@
     }
 
         .profile-tags-group {
-            padding-top: 20px;
-            padding-bottom: 50px;
+            padding-top: 12px;
+            padding-bottom: 40px;
+        }
+
+        .profile-tags-group:last-child {
+            padding-bottom: 0;
         }
 
         .user-tags {
@@ -757,10 +761,10 @@
                 cursor: pointer;
                 font-size: 110%;
                 font-weight: 300;
-                padding: 7px 20px;
+                padding: 6px 14px;
                 border: var(--button-hover-border);
-                margin-right: 20px;
-                margin-bottom: 20px;
+                margin-right: 10px;
+                margin-bottom: 12px;
                 border-radius: 20px;
                 text-decoration: none;
                 text-align: center;
@@ -1138,7 +1142,7 @@
                 }
 
 .intro {
-    padding-top: 50px;
+    padding-top: 30px;
     font-size: 120%;
 }
 
@@ -1168,6 +1172,8 @@
 
         .form-row #id_avatar {
             max-width: 350px;
+            resize: none;
+            cursor: pointer;
         }
 
         .form-row #id_bio {
@@ -1185,12 +1191,22 @@
             display: inline-block;
             width: 35%;
             min-width: 150px;
+            cursor: pointer;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSdibGFjaycgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
+            background-repeat: no-repeat;
+            background-size: 30px;
+            background-position: calc(100% - 8px) center;
+        }
+
+        .intro-form textarea {
+          resize: none;
+          padding: 20px;
         }
 
         .intro-form textarea,
         .intro-form .CodeMirror {
             text-align: left;
-            min-height: 700px;
+            min-height: 300px;
             transform: scale(1);
         }
 
@@ -1492,7 +1508,7 @@
 
 .menu-button {
     font-size: 80%;
-    padding: 10px 18px;
+    padding: 8px 14px;
 }
 
     @media only screen and (max-width : 570px) {
@@ -1546,17 +1562,16 @@
     }
 
     .compose-type {
-        width: 220px;
-        height: 220px;
+        width: 180px;
         text-decoration: none;
         text-align: center;
+        padding: 20px 0;
     }
 
         .compose-type-icon {
             display: block;
             font-size: 70px;
             padding-bottom: 10px;
-            padding-top: 20px;
         }
 
         .compose-type-name {
@@ -1571,9 +1586,10 @@
         padding-bottom: 100px;
     }
 
-.compose-form {
-
-}
+    .compose-btn-text {
+        font-size: 16px;
+        line-height: 16px;
+    }
 
     .compose-form-title input {
         text-align: center;

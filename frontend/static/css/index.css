@@ -8,6 +8,7 @@
 @import "./theme.css";
 @import "./base.css";
 @import "./layout.css";
+@import "./invites.css";
 @import "./components.css";
 @import "./components/menu.css";
 @import "./components/auth.css";
