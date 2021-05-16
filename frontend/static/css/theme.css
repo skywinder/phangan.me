@@ -142,6 +142,7 @@ img {
 }
 
 select {
+    cursor: pointer;
     color: var(--select-color);
     background-color: var(--select-bg-color);
 }

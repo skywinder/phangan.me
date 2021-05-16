@@ -1542,7 +1542,7 @@
 
 .compose {
     max-width: var(--normal-content-width);
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
     @media only screen and (max-width : 570px) {

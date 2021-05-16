@@ -16,7 +16,9 @@
     padding: 0;
     box-shadow: none;
     width: 100%;
-    max-width: 522px;
+    max-width: 530px;
+    background-color: transparent;
+    color: var(--brighter-text-color);
 }
 
 .copy-invite-item button {
