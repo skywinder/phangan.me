@@ -670,7 +670,7 @@ input[type=range]:focus::-ms-fill-upper {
             text-overflow: ellipsis;
             padding: 0;
             vertical-align: middle;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
 
         .topic-type-card .topic-icon {
