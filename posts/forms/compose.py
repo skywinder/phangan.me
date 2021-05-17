@@ -230,7 +230,7 @@ class PostEventForm(PostForm):
         label="Таймзона",
         required=True,
         choices=[
-            ("Asia/Bangkok", "по Таиланду"),
+            ("Asia/Bangkok", "по Пангану"),
             ("UTC", "UTC"),
         ]
     )
