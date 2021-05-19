@@ -64,6 +64,18 @@ def show_post(request, post_type, post_slug):
 
 
 @auth_required
+def publish_post(request, post_slug):
+    post = get_object_or_404(Post, slug=post_slug)
+    if not request.me.is_moderator:
+        if post.author != request.me:
+            raise AccessDenied(title="Только автор или модератор может опубликовать пост")
+
+    post.publish()
+
+    return redirect("show_post", post.type, post.slug)
+
+
+@auth_required
 def unpublish_post(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
     if not request.me.is_moderator:

@@ -1,3 +1,6 @@
 <a href="{% url "edit_post" post.slug %}" class="label label-type-draft">
-    <span class="label-title"><i class="fas fa-edit"></i> Черновик</span>
+    <span class="label-title">Редактировать <i class="fas fa-edit"></i></span>
+</a>
+<a href="{% url "publish_post" post.slug %}" class="label label-type-draft" onclick="return confirm('Публикуем? Пост увидят все и он попадет на модерацию')">
+    <span class="label-title">Опубликовать 🚀</span>
 </a>

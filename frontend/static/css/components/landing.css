@@ -104,6 +104,10 @@
     }
 
     @media only screen and (max-width : 570px) {
+        .landing-title p {
+            margin: 20px 0;
+        }
+
         .landing-block-chats {
             flex-wrap: wrap;
         }
@@ -141,10 +145,6 @@
     @media only screen and (max-width : 570px) {
         .landing-title {
             font-size: 5vw;
-        }
-
-        .landing {
-            padding-top: 80px;
         }
     }
 
