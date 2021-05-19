@@ -32,9 +32,8 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="compose-form-datetime">
-                        <div>Когда? </div>
-
+                    <div class="compose-form-item-title">Когда?</div>
+                    <div class="compose-form-item compose-form-datetime">
                         <div class="compose-form-datetime-day">
                             {{ form.event_day }}
                         </div>
@@ -43,7 +42,7 @@
                             {{ form.event_month }}
                         </div>
 
-                        <div>в</div>
+                        <span>в</span>
 
                         <div class="compose-form-datetime-time">
                             {{ form.event_time }}
@@ -63,9 +62,9 @@
 
 
                 <div class="form-row">
-                    <div class="compose-form-location">
-                        <div>Где? </div>
-                        <div>{{ form.event_location }}</div>
+                    <div class="compose-form-item-title">Где?</div>
+                    <div class="compose-form-item compose-form-location">
+                        {{ form.event_location }}
                     </div>
                     {% if form.event_day.errors %}<span class="form-row-errors">{{ form.event_location.errors }}</span>{% endif %}
                 </div>
