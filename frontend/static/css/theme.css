@@ -141,12 +141,6 @@ img {
     max-width: 100%;
 }
 
-select {
-    cursor: pointer;
-    color: var(--select-color);
-    background-color: var(--select-bg-color);
-}
-
 input[type=text],
 input[type=number],
 input[type=file],
@@ -163,6 +157,17 @@ select,
     resize: vertical;
     box-sizing: border-box;
     line-height: 1.4em;
+}
+
+select {
+    cursor: pointer;
+    color: var(--select-color);
+    background-color: var(--select-bg-color);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSdibGFjaycgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: calc(100% - 8px) center;
+    padding-right: 40px;
 }
 
     input:focus,
