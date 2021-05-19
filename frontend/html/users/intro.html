@@ -77,7 +77,7 @@
                 </label>
                 {{ form.email }}
                 {% if form.email.errors %}<span class="form-row-errors">{{ form.email.errors }}</span>{% endif %}
-                <span class="form-row-help">Не будет виден никому, нужен для входа и оповещений</span>
+                <span class="form-row-help">Не будет виден никому, нужен для входа и оповещений.</span>
             </div>
 
             <div class="form-row">
@@ -160,7 +160,7 @@
                     <strong>Ваше описание станет видно всем</strong> — оно попадёт на главную страницу и будет вашим первым постом в Клубе, после того как <strong>его прочитает модератор</strong>.
                 </p>
                 <!-- <p>Вот примеры хороших интро: <a href="https://vas3k.club/intro/vas3k/" target="_blank">Вастрик</a>, <a href="https://vas3k.club/intro/lena/">Лена</a>, <a href="https://vas3k.club/intro/Sciannadev/" target="_blank">Анна</a>.-->
-                </p> -->
+                </p>
             </div>
 
             <div class="form-row form-row-intro">
@@ -338,7 +338,7 @@
                     ☝️ Если кнопки сверху не видно, значит какой-то AdBlock её заблокировал. Можно пойти другим путём.
                     Запустите нашего <a href="{{ settings.TELEGRAM_BOT_URL }}" rel="noreferrer" target="_blank">бота</a>, после чего напишите ему эту команду с секретный кодом:
                 </p>
-                <div style="color: #333333">
+                <div>
                   <strong><code>/auth {{ form.instance.secret_hash }}</code></strong>
                 </div>
 
