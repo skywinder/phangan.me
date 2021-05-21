@@ -39,7 +39,7 @@ class ProfileEditForm(ModelForm):
     # )
     position = forms.CharField(
         label="О себе",
-        required=True,
+        required=False,
         max_length=128
     )
     contact = forms.CharField(

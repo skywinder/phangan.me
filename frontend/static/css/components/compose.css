@@ -1,28 +1,38 @@
-.compose-form-datetime {
+.compose-form-item {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     font-size: 130%;
 }
 
-    .compose-form-datetime > * {
-        padding-left: 10px;
-    }
+.compose-form-item-title {
+  font-size: 130%;
+  margin-bottom: 20px;
+}
+
+.compose-form-location input {
+    width: 100%;
+    text-align: left !important;
+}
+
+.compose-form-datetime > * {
+    margin-bottom: 10px;
+}
+
+.compose-form-datetime {
+  margin-bottom: -10px;
+}
+
+.compose-form-datetime > span {
+    margin: 0 25px 10px;
+}
+
+.compose-form-datetime-day,
+.compose-form-datetime-time {
+    margin-right: 15px;
+}
 
 .compose-form-location {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 130%;
+  margin-bottom: 30px;
 }
-
-    .compose-form-location > * {
-        padding-left: 10px;
-    }
-
-    .compose-form-location input {
-        min-width: 580px;
-        text-align: left !important;
-    }
