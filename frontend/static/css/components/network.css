@@ -46,15 +46,10 @@
             position: relative;
             display: block;
             max-width: 250px;
-            padding: 20px;
-            margin-right: 50px;
+            padding: 30px 40px;
             box-sizing: border-box;
             text-align: center;
             text-decoration: none;
-        }
-
-        .network-channel:last-of-type {
-            margin-right: 0;
         }
 
             .network-channel-icon {
