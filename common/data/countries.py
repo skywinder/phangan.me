@@ -11,4 +11,6 @@ COUNTRIES = [
     ("Haad Yuan", "Haad Yuan"),
     ("Haad Tien", "Haad Tien"),
     ("Haad Wai Nam", "Haad Wai Nam"),
+    ("Baan Madua Wan", "Ban Madua Wan"),
+    ("Baan Nai Suan", "Baan Nai Suan"),
 ]
