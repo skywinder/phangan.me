@@ -76,13 +76,13 @@ class UserIntroForm(ModelForm):
             }
         ),
     )
-    email_digest_type = forms.ChoiceField(
-        label="Подписка на дайджест",
-        required=False,
-        choices=User.EMAIL_DIGEST_TYPES,
-        initial=User.EMAIL_DIGEST_TYPE_WEEKLY,
-        widget=forms.RadioSelect(),
-    )
+    # email_digest_type = forms.ChoiceField(
+    #     label="Подписка на дайджест",
+    #     required=False,
+    #     choices=User.EMAIL_DIGEST_TYPES,
+    #     initial=User.EMAIL_DIGEST_TYPE_WEEKLY,
+    #     widget=forms.RadioSelect(),
+    # )
     privacy_policy_accepted = forms.BooleanField(
         label="Даю согласие на обработку своих персональных данных", required=True
     )
@@ -100,7 +100,7 @@ class UserIntroForm(ModelForm):
             "country",
             # "bio",
             "contact",
-            "email_digest_type",
+            # "email_digest_type",
         ]
 
     def clean_slug(self):
