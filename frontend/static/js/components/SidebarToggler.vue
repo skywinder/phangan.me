@@ -1,5 +1,5 @@
 <template>
-    <span class="feed-sidebar-toggler" @click.prevent="toggle">{{ isShown ? "&#8249;" : "&#8250;" }}</span>
+    <span class="feed-sidebar-toggler" @click.prevent="toggle">&#9776;</span>
 </template>
 
 <script>
