@@ -339,9 +339,9 @@
                     ☝️ Если кнопки сверху не видно, значит какой-то AdBlock её заблокировал. Можно пойти другим путём.
                     Запустите нашего <a href="{{ settings.TELEGRAM_BOT_URL }}" rel="noreferrer" target="_blank">бота</a>, после чего напишите ему эту команду с секретный кодом:
                 </p>
-                <div>
-                  <strong><code>/auth {{ form.instance.secret_hash }}</code></strong>
-                </div>
+
+                <div class="clearfix20"></div>
+                <bot-auth-code code="/auth {{ form.instance.secret_hash }}"></bot-auth-code>
 
                 <p class="user-telegram-auth-data" id="telegram-auth-data" style="display: none;"></p>
             </div>

@@ -716,3 +716,25 @@ img.emoji {
 .text-200 {
     font-size: 200%;
 }
+
+.copy-bot-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-bot-code input {
+    flex-shrink: 0;
+    padding: 0;
+    min-width: 280px;
+    box-shadow: none;
+    font-size: 24px;
+    background-color: transparent;
+}
+
+.copy-bot-code button {
+    margin-left: 20px;
+    line-height: 100%;
+    font-size: 22px;
+    padding: 8px 30px;
+}
