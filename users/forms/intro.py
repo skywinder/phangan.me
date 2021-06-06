@@ -68,10 +68,11 @@ class UserIntroForm(ModelForm):
     )
     intro = forms.CharField(
         label="#intro",
-        required=False,
+        required=True,
         widget=forms.Textarea(
             attrs={
                 "maxlength": 10000,
+                "minlength": 140,
                 "placeholder": "Расскажите Клубу о себе...",
             }
         ),
