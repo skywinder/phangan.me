@@ -163,16 +163,6 @@
                 </p>
             </div>
 
-            <div class="form-row form-row-intro">
-                {{ form.intro }}
-                {% if form.intro.errors %}<span class="form-row-errors">{{ form.intro.errors }}</span>{% endif %}
-                <!-- <input-length-counter
-                    element="#{{ form.intro.id_for_label }}"
-                    class="intro-form-counter"
-                    :min-length="{{ form.intro.field.widget.attrs.minlength }}"
-                /> -->
-            </div>
-
             <div class="block-description" style="text-align: left; padding-top: 0;">
                 <p>
                     Писать о себе всегда сложно, потому вот вам подсказки:
@@ -196,6 +186,16 @@
                     <li>Любимый вьюпойнт?</li>
                     <li>Самый лучший район острова?</li>
                 </ul>
+            </div>
+
+            <div class="form-row form-row-intro">
+                {{ form.intro }}
+                {% if form.intro.errors %}<span class="form-row-errors">{{ form.intro.errors }}</span>{% endif %}
+                <!-- <input-length-counter
+                    element="#{{ form.intro.id_for_label }}"
+                    class="intro-form-counter"
+                    :min-length="{{ form.intro.field.widget.attrs.minlength }}"
+                /> -->
             </div>
 
             {% comment %}
