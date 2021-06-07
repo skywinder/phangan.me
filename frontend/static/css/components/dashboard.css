@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
     .dashboard-item {
