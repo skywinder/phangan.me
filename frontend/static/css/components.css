@@ -1525,7 +1525,8 @@
         }
     }
 
-.menu-button-compose {
+.menu-button-compose,
+.menu-button-bookmark {
     margin-right: 10px;
 }
 
