@@ -996,10 +996,18 @@
                 position: fixed;
                 left: 20px;
                 top: 23px;
-                font-size: 23px;
-                line-height: 40px;
+                font-size: 20px;
                 z-index: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
+        }
+
+        @media only screen and (max-width : 380px) {
+          .feed-sidebar-toggler {
+            left: 10px;
+          }
         }
 
 
@@ -1507,12 +1515,13 @@
             display: none;
         }
         .mobile-menu-opened .menu-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin-right: 0;
-        }
-
-        .menu-button-bookmark {
-            padding-right: 8px;
+            width: 40px;
+            height: 40px;
+            box-sizing: border-box;
         }
     }
 
