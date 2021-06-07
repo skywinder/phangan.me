@@ -25,6 +25,7 @@
         @media only screen and (max-width : 570px) {
             .menu-left {
                 flex-grow: 2;
+                margin-left: 64px;
             }
 
             .menu-center {

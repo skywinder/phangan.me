@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
     )
     is_public = forms.BooleanField(
         label="Виден ли в большой интернет?",
-        initial=False,
+        initial=True,
         required=False
     )
 

@@ -31,7 +31,7 @@ class UserIntroForm(ModelForm):
     )
     avatar = ImageUploadField(
         label="Аватар или фото",
-        required=False,
+        required=True,
         resize=(512, 512),
         convert_to="jpg",
     )
@@ -68,21 +68,22 @@ class UserIntroForm(ModelForm):
     )
     intro = forms.CharField(
         label="#intro",
-        required=False,
+        required=True,
         widget=forms.Textarea(
             attrs={
                 "maxlength": 10000,
+                "minlength": 140,
                 "placeholder": "Расскажите Клубу о себе...",
             }
         ),
     )
-    email_digest_type = forms.ChoiceField(
-        label="Подписка на дайджест",
-        required=False,
-        choices=User.EMAIL_DIGEST_TYPES,
-        initial=User.EMAIL_DIGEST_TYPE_WEEKLY,
-        widget=forms.RadioSelect(),
-    )
+    # email_digest_type = forms.ChoiceField(
+    #     label="Подписка на дайджест",
+    #     required=False,
+    #     choices=User.EMAIL_DIGEST_TYPES,
+    #     initial=User.EMAIL_DIGEST_TYPE_WEEKLY,
+    #     widget=forms.RadioSelect(),
+    # )
     privacy_policy_accepted = forms.BooleanField(
         label="Даю согласие на обработку своих персональных данных", required=True
     )
@@ -100,7 +101,7 @@ class UserIntroForm(ModelForm):
             "country",
             # "bio",
             "contact",
-            "email_digest_type",
+            # "email_digest_type",
         ]
 
     def clean_slug(self):

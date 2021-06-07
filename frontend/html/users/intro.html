@@ -21,7 +21,7 @@
                 <div class="clearfix20"></div>
                 <p>
                     Прежде чем впустить вас в Панган🏝️Клуб, давайте познакомимся поближе.
-                    Для начала прочитайте <a href="{% url "docs" "about" %}">правила</a> и заполните форму ниже.
+                    Для начала прочитайте <a href="{% url "docs" "about" %}" target="_blank">правила</a> и заполните форму ниже.
                 </p>
 
                 <!-- <p>
@@ -163,16 +163,6 @@
                 </p>
             </div>
 
-            <div class="form-row form-row-intro">
-                {{ form.intro }}
-                {% if form.intro.errors %}<span class="form-row-errors">{{ form.intro.errors }}</span>{% endif %}
-                <!-- <input-length-counter
-                    element="#{{ form.intro.id_for_label }}"
-                    class="intro-form-counter"
-                    :min-length="{{ form.intro.field.widget.attrs.minlength }}"
-                /> -->
-            </div>
-
             <div class="block-description" style="text-align: left; padding-top: 0;">
                 <p>
                     Писать о себе всегда сложно, потому вот вам подсказки:
@@ -198,6 +188,17 @@
                 </ul>
             </div>
 
+            <div class="form-row form-row-intro">
+                {{ form.intro }}
+                {% if form.intro.errors %}<span class="form-row-errors">{{ form.intro.errors }}</span>{% endif %}
+                <!-- <input-length-counter
+                    element="#{{ form.intro.id_for_label }}"
+                    class="intro-form-counter"
+                    :min-length="{{ form.intro.field.widget.attrs.minlength }}"
+                /> -->
+            </div>
+
+            {% comment %}
             <div class="block-header">📫<br>Как удобнее следить за происходящим?</div>
 
             <div class="block-description">
@@ -235,6 +236,7 @@
                 </div>
                 {% if form.email_digest_type.errors %}<span class="form-row-errors">{{ form.email_digest_type.errors }}</span>{% endif %}
             </div>
+            {% endcomment %}
 
             <!-- <div class="block-header">Еще способы быть в курсе 👇</div>
 
@@ -337,9 +339,9 @@
                     ☝️ Если кнопки сверху не видно, значит какой-то AdBlock её заблокировал. Можно пойти другим путём.
                     Запустите нашего <a href="{{ settings.TELEGRAM_BOT_URL }}" rel="noreferrer" target="_blank">бота</a>, после чего напишите ему эту команду с секретный кодом:
                 </p>
-                <div>
-                  <strong><code>/auth {{ form.instance.secret_hash }}</code></strong>
-                </div>
+
+                <div class="clearfix20"></div>
+                <bot-auth-code code="/auth {{ form.instance.secret_hash }}"></bot-auth-code>
 
                 <p class="user-telegram-auth-data" id="telegram-auth-data" style="display: none;"></p>
             </div>

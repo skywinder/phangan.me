@@ -995,14 +995,10 @@
                 display: inline-block;
                 position: fixed;
                 left: 20px;
-                bottom: 20px;
-                font-size: 35px;
+                top: 23px;
+                font-size: 23px;
+                line-height: 40px;
                 z-index: 5;
-            }
-
-            .mobile-menu-opened .feed-sidebar-toggler {
-                left: auto;
-                right: 10px
             }
         }
 

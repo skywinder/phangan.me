@@ -14,7 +14,7 @@
 
         {% if active_invites %}
             <div class="block-description block-description-center">
-                Активные ({{ active_invites | length }})
+                Активные
             </div>
 
             <ol class="copy-invite">
@@ -29,15 +29,14 @@
 
         {% if used_invites %}
             <div class="block-description block-description-center">
-                Использованные ({{ used_invites | length }})
+                Использованные
             </div>
 
             <ol class="copy-invite">
             {% for invite in used_invites %}
-                <li>                    
-                    <strong>{{ invite.used_by.full_name }}</strong>
-                    ({{ invite.used_by.created_at }}),
-                    <i>{{ invite.id }}</i>
+                <li>
+                    <a href="{% url "profile" invite.used_by.slug %}"><strong>@{{ invite.used_by.slug }}</strong></a>,
+                    {{ invite.used_by.full_name }} – {{ invite.used_by.created_at }}
                 </li>
             {% endfor %}
             </ol>

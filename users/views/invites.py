@@ -74,7 +74,7 @@ def user_invites(request, user_slug):
     if user.id != request.me.id and not request.me.is_god:
         raise Http404()
 
-    invites = user.invites.all()
+    invites = user.invites.all().order_by('used_by__created_at')
     active_invites = [i for i in invites if not i.used_by]
     used_invites = [i for i in invites if i.used_by]
 
