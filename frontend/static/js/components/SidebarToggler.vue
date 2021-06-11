@@ -1,5 +1,6 @@
 <template>
-    <span class="feed-sidebar-toggler" @click.prevent="toggle">&#9776;</span>
+    <i class="feed-sidebar-toggler fa fa-bars" aria-hidden="true" @click.prevent="toggle">
+    </i>
 </template>
 
 <script>

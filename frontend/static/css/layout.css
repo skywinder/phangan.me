@@ -23,9 +23,19 @@
         }
 
         @media only screen and (max-width : 570px) {
+            .menu.menu-full {
+                grid-template-columns: none;
+                display: flex;
+                flex-direction: row;
+                padding-right: 20px;
+            }
+
             .menu-left {
-                flex-grow: 2;
-                margin-left: 64px;
+                margin-left: 65px;
+            }
+
+            .menu-right {
+              margin-left: auto;
             }
 
             .menu-center {
@@ -42,6 +52,10 @@
                 top: 100%;
                 z-index: 3;
             }
+
+            .menu-button-bookmark {
+                margin-left: 10px;
+            }
         }
 
         .menu-center {
@@ -52,12 +66,17 @@
             text-align: right;
         }
 
-        @media only screen and (max-width : 570px) {
-            .menu-full {
-                grid-template-columns: none;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
+        @media only screen and (max-width : 380px) {
+            .menu-left {
+                margin-left: 42px;
+            }
+
+            .menu.menu-full {
+                padding-right: 10px;
+            }
+
+            .menu-button-bookmark {
+              margin-left: 0;
             }
         }
 
