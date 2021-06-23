@@ -43,8 +43,8 @@ def private_message(update: Update, context: CallbackContext) -> None:
     club_users = cached_telegram_users()
     if str(update.effective_user.id) not in set(club_users):
         update.effective_chat.send_message(
-            "Привет! Мы пока не знакомы. Привяжи меня к аккаунту командой /auth с "
-            "<a href=\"https://phangan.me/user/me/edit/bot/\">кодом из профиля</a> через пробел",
+            "Привет! Мы пока не знакомы. Привяжи меня к аккаунту перейдя по ссылке из "
+            "<a href=\"https://phangan.me/user/me/edit/bot/\">профиля</a>",
             parse_mode=ParseMode.HTML
         )
     else:
@@ -83,6 +83,7 @@ def main() -> None:
     )
 
     # Only private chats
+    dispatcher.add_handler(CommandHandler("start", auth.command_auth, Filters.private))
     dispatcher.add_handler(CommandHandler("auth", auth.command_auth, Filters.private))
     dispatcher.add_handler(MessageHandler(Filters.private, private_message))
 
