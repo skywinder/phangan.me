@@ -1,3 +1,4 @@
+import base64
 from telegram import Update, ParseMode
 from telegram.ext import CallbackContext
 
@@ -16,6 +17,7 @@ def command_auth(update: Update, context: CallbackContext) -> None:
         return None
 
     secret_code = update.message.text.split(" ", 1)[1].strip()
+    secret_code = base64.urlsafe_b64decode(secret_code).decode('utf-8')
     user = User.objects.filter(secret_hash=secret_code).first()
 
     if not user:

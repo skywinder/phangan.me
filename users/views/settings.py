@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+import base64
 import stripe
 from django.conf import settings
 from django.http import Http404
@@ -133,7 +134,11 @@ def edit_bot(request, user_slug):
     if user.id != request.me.id and not request.me.is_moderator:
         raise Http404()
 
-    return render(request, "users/edit/bot.html", {"user": user})
+    auth_code = base64.urlsafe_b64encode(bytes(user.secret_hash, 'utf-8')).decode('utf-8')
+    return render(request, "users/edit/bot.html", {
+        "user": user,
+        "auth_code": auth_code,
+    })
 
 
 @auth_required
