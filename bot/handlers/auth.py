@@ -34,7 +34,7 @@ def command_auth(update: Update, context: CallbackContext) -> None:
     }
     user.save()
 
-    update.effective_chat.send_message(f"Отличный код! Приятно познакомиться, {user.slug}")
+    update.effective_chat.send_message(f"Приятно познакомиться, {user.slug}! Добро пожаловать в Панган🏝Клуб!")
     update.message.delete()
 
     # Refresh the cache by deleting and requesting it again
