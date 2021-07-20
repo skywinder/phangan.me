@@ -22,17 +22,19 @@
             }
         }
 
-        .has-mobile-menu .menu-button {
-            display: none;
-        }
+         @media only screen and (max-width : 450px) {
+            .has-mobile-menu .menu-button {
+              display: none;
+            }
 
-        .has-mobile-menu.mobile-menu-opened .menu-button {
-          display: inline-flex;
-        }
+            .has-mobile-menu.mobile-menu-opened .menu-button {
+              display: inline-flex;
+            }
 
-        .has-mobile-menu.mobile-menu-opened .menu-avatar {
-          display: none;
-        }
+            .has-mobile-menu.mobile-menu-opened .menu-avatar {
+              display: none;
+            }
+         }
 
         .menu-logo:hover {
             color: var(--text-color);
