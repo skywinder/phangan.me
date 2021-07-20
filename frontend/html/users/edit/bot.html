@@ -13,7 +13,7 @@
             <div class="block-description">
                 <p>
                     <strong>Бот — важное дополнение к Клубу.</strong>
-                    Он оповещает о новых комментариях, через него можно отвечать на них и даже писать посты, форвардя ему сообщения.
+                    Он оповещает о новых комментариях, через него можно отвечать на них.
                 </p>
 
                 <p>
@@ -30,13 +30,6 @@
                         Подключить бота
                     </a>
                 </p>
-                <p>
-                    ☝️ Если что-то не работает, можно пойти другим путём.
-                    Запустите нашего <a href="{{ settings.TELEGRAM_BOT_URL }}" rel="noreferrer" target="_blank">бота</a>, после чего напишите ему эту команду с секретный кодом:
-                </p>
-
-                <div class="clearfix20"></div>
-                <bot-auth-code code="/auth {{ auth_code }}"></bot-auth-code>
                 {% endif %}
 
                 {% comment %}
@@ -69,6 +62,13 @@
                     </script>
                 </p>
                 {% endcomment %}
+                <p>
+                    ☝️ Если вы хотите подключить бота вручную:
+                    Запустите нашего <a href="{{ settings.TELEGRAM_BOT_URL }}" rel="noreferrer" target="_blank">бота</a>, после чего напишите ему эту команду с секретный кодом:
+                </p>
+                <div class="clearfix20"></div>
+                <bot-auth-code code="/auth {{ auth_code }}"></bot-auth-code>
+
             </div>
         </div>
     </div>
