@@ -37,6 +37,9 @@ def command_auth(update: Update, context: CallbackContext) -> None:
     update.effective_chat.send_message(f"Приятно познакомиться, {user.slug}! Добро пожаловать в Панган🏝Клуб!")
     update.message.delete()
 
+    if user.moderation_status != User.MODERATION_STATUS_APPROVED:
+        update.effective_chat.send_message(f"Теперь осталось пройти модерацию. Бот заработает сразу после этого")
+
     # Refresh the cache by deleting and requesting it again
     flush_users_cache()
     cached_telegram_users()

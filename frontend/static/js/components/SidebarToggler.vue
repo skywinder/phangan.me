@@ -11,6 +11,9 @@ export default {
             isShown: false,
         };
     },
+    created() {
+      document.getElementById("app").classList.add('has-mobile-menu');
+    },
     methods: {
         toggle() {
             this.isShown = !this.isShown;

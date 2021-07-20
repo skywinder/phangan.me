@@ -11,10 +11,27 @@
         white-space: nowrap;
     }
 
-        @media only screen and (max-width : 570px) {
-            .menu-logo {
-                font-size: 20px;
+        @media only screen and (max-width : 380px) {
+            .menu.menu-full {
+              padding: 0 10px;
             }
+
+            .menu .menu-button,
+            .menu .menu-avatar {
+              margin-left: 0;
+            }
+        }
+
+        .has-mobile-menu .menu-button {
+            display: none;
+        }
+
+        .has-mobile-menu.mobile-menu-opened .menu-button {
+          display: inline-flex;
+        }
+
+        .has-mobile-menu.mobile-menu-opened .menu-avatar {
+          display: none;
         }
 
         .menu-logo:hover {
@@ -43,11 +60,8 @@
     .menu-avatar {
         width: 40px;
         height: 40px;
+        margin-left: 10px;
     }
-
-        .mobile-menu-opened .menu-avatar {
-            display: none;
-        }
 
     .menu-search {
         white-space: nowrap;

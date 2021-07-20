@@ -13,7 +13,7 @@
 }
 
     .menu-full {
-        grid-template-columns: 230px auto 270px;
+        grid-template-columns: 230px auto 230px;
         position: relative;
     }
 
@@ -27,11 +27,14 @@
                 grid-template-columns: none;
                 display: flex;
                 flex-direction: row;
-                padding-right: 20px;
             }
 
-            .menu-left {
-                margin-left: 65px;
+            .menu .menu-logo {
+                font-size: 20px;
+            }
+
+            .has-mobile-menu .menu-left {
+                margin-left: 55px;
             }
 
             .menu-right {
@@ -52,9 +55,11 @@
                 top: 100%;
                 z-index: 3;
             }
+        }
 
-            .menu-button-bookmark {
-                margin-left: 10px;
+        @media only screen and (max-width : 370px) {
+            .menu .menu-logo {
+                font-size: 18px;
             }
         }
 
@@ -64,20 +69,6 @@
 
         .menu-right {
             text-align: right;
-        }
-
-        @media only screen and (max-width : 380px) {
-            .menu-left {
-                margin-left: 42px;
-            }
-
-            .menu.menu-full {
-                padding-right: 10px;
-            }
-
-            .menu-button-bookmark {
-              margin-left: 0;
-            }
         }
 
     .menu-simplified {
