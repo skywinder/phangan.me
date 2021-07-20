@@ -5,7 +5,6 @@
     .bookmarks-title {
         font-size: 220%;
         font-weight: 600;
-        text-align: right;
     }
 
     .bookmarks-list {
@@ -15,8 +14,6 @@
     .bookmarks-list-placeholder {
         font-size: 130%;
         opacity: 0.6;
-        text-align: right;
         padding-top: 40px;
         max-width: 500px;
-        float: right;
     }
