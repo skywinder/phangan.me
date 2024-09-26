@@ -74,7 +74,7 @@ services:
     environment: # check out pepic/config/app.go for more env variables
       - BASE_URL=http://i.phangan.me/
       - STORAGE_DIR=/uploads
-      - SECRET_CODE=w@tareyoulooking?
+      - SECRET_CODE=${SECRET_CODE}  # Use the variable from .env file
       - IMAGE_ORIGINAL_LENGTH=1400
       - MAX_UPLOAD_SIZE=100M
     volumes:
